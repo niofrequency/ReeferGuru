@@ -1,0 +1,8 @@
+{
+  "name": "Reefer Guru",
+  "description": "The ultimate AI assistant for refrigerated container technicians. Expert knowledge on Carrier Transicold PrimeLINE, EliteLINE, and ThinLINE units.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
