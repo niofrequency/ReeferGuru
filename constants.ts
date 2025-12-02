@@ -471,6 +471,138 @@ Standard (NTC): 10,000 Ohms @ 25°C (77°F).
 Discharge (CPDS): 86,113 Ohms @ 25°C (77°F); 280,824 Ohms @ 0°C (32°F).
 `;
 
+export const CARRIER_T365_CONTEXT = `
+*** SUPPLEMENTARY REFERENCE: Carrier PrimeLINE 69NT40-561-300 to 399 (T-365 Rev D) ***
+SYSTEM: PrimeLINE (Scroll Compressor ZMD26K2E-TFD-274) with Micro-Link 3.
+INCLUDES: Edge Technology, XtendFRESH, FuelWise, TripWise.
+
+ALARM CODES (Table 4-6):
+AL03 Loss of Superheat Control: EEV/ETS1/ETS2 issue.
+AL05 Manual Defrost Switch Failure.
+AL06 Keypad or Keypad Harness Fail.
+AL07 Fresh Air Vent Open: XtendFRESH active and vent >0.
+AL08 High Compressor Pressure Ratio.
+AL09 O2 Sensor Failure: XtendFRESH.
+AL10 CO2 Sensor Failure: XtendFRESH.
+AL14 Phase Sequence Detect Fault.
+AL16 Compressor Current High.
+AL17 Compressor Pressure Delta Fault: SPT/DPT differential.
+AL18 Discharge Pressure High.
+AL19 Discharge Temperature High.
+AL20 Control Contactor Fuse (F3).
+AL21 Control Circuit Fuse (F1/F2).
+AL22 Evaporator IP.
+AL23 Loss of Phase B.
+AL24 Compressor IP.
+AL25 Condenser IP.
+AL26 All Sensors Failure.
+AL27 Analog to Digital Accuracy Failure.
+AL28 Low Suction Pressure.
+AL29 Loss of Atmospheric Control (XtendFRESH): CO2/O2 outside limits >60/30 mins.
+AL50 Air Vent Position Sensor (VPS).
+AL51 EEPROM Failure.
+AL52 EEPROM Alarm List Full.
+AL53 Battery Pack Failure.
+AL54 Primary Supply Sensor (STS).
+AL56 Primary Return Sensor (RTS).
+AL57 Ambient Sensor (AMBS).
+AL58 Compressor High Pressure Safety (HPS).
+AL59 Heater Termination Thermostat (HTT).
+AL60 Defrost Temperature Sensor (DTS).
+AL61 Heater Current Draw Fault.
+AL62 O2 Out of Range (XtendFRESH): Notification alarm only.
+AL63 Current Limit.
+AL64 Discharge Temp Sensor (CPDS).
+AL65 Discharge Pressure Transducer (DPT).
+AL66 Suction/Evap Pressure Transducer (SPT/EPT).
+AL67 Humidity Sensor (HS).
+AL69 Evaporator Temp Sensor (ETS1).
+AL70 Secondary Supply Sensor (SRS).
+AL71 Secondary Return Sensor (RRS).
+AL72 Control Temp Out of Range.
+AL96 Scrubber Rotational Failure (XtendFRESH): Motor/Fuse check.
+ERR #: Internal Microprocessor Failure.
+
+FUNCTION CODES (Table 4-3):
+Cd01: Capacity Modulation (%) (DUV).
+Cd03: Compressor Motor Current.
+Cd04-06: Line Currents.
+Cd07: Main Power Voltage.
+Cd08: Main Power Frequency.
+Cd09: Ambient Air Temp.
+Cd10: Comp Suction Temp.
+Cd11: Comp Dome / Discharge Temp.
+Cd12: Comp Suction Port Pressure.
+Cd14: Comp Discharge Pressure.
+Cd15: Digital Unloader Valve.
+Cd16: Hour Meters.
+Cd17: Relative Humidity.
+Cd18: Software Rev.
+Cd19: Battery Check.
+Cd20: Config/Model.
+Cd21: Capacity Mode.
+Cd22: Compressor State.
+Cd23: Evaporator Fan.
+Cd25: Time to Defrost.
+Cd26: DTS Reading.
+Cd27: Defrost Interval.
+Cd28: Temp Units.
+Cd29: Failure Action Mode.
+Cd30: In-Range Tolerance.
+Cd31: Stagger Start Offset.
+Cd32: System Current Limit (15-23A).
+Cd33: Humidity Setpoint.
+Cd34: Economy Mode.
+Cd35: Bulb Mode.
+Cd36: Evap Fan Speed Select.
+Cd37: Variable DTT Setting.
+Cd38: Secondary Supply.
+Cd39: Secondary Return.
+Cd40: Container ID.
+Cd41: Valve Override (Service).
+Cd43: XtendFRESH Mode / eAutoFresh Mode.
+Cd44: XtendFRESH/eAutoFresh Values (CO2/O2).
+Cd45: VPS Position.
+Cd46: Airflow Display Units.
+Cd47: Variable Economy Temp Setting.
+Cd48: Dehumidification/Bulb Parameter.
+Cd49: Days Since Last Pretrip.
+Cd50: Quest Enable.
+Cd51: ACT Parameter Selection.
+Cd53: ASC Parameter Selection.
+Cd54: Suction Superheat / EEV %.
+Cd55: Discharge Superheat.
+Cd58: Water Pressure Switch / Condenser Fan Switch.
+Cd59: Pump Down Logic.
+Cd60: Evap Fan Pulsing Temp Setting.
+Cd62: High Speed Evap Fan Setting.
+Cd63: FuelWise.
+Cd64: Alternative Compressor Selection (Std vs Edge).
+Cd65: TripWise Setting.
+Cd66: Instantaneous Power.
+Cd67: Total Power.
+Cd70: Temp Setpoint Lock.
+
+TORQUE VALUES (Table 7-5 & Text):
+Suction/Discharge Rotalocks: 80-100 ft-lbs (108-135 Nm).
+Unloader/Economizer Connections: 18-20 ft-lbs (24-27 Nm) / 24-26 ft-lbs (32-35 Nm).
+Compressor Base Bolts: 45 ft-lbs (6.2 mkg).
+Evaporator Fan Motor Shaft Nut: 40 ft-lbs.
+Evaporator Fan Clamp Bolts: 70 in-lbs (0.81 mkg).
+eAutoFresh Motor Cup Screws: 25 in-lbs (0.29 mkg).
+Power Terminals: Check tightness.
+
+COMPRESSOR:
+Model: ZMD26K2E-TFD-274 (Scroll).
+Oil Charge: 1774 ml (60 oz) Uniqema Emkarate RL-32-3MAF.
+Refrigerant: R-134a.
+Charge: Receiver 4.54 kg (10 lbs).
+
+SENSORS (Table 7-2):
+Standard (NTC): 10,000 Ohms @ 25°C (77°F).
+Discharge (CPDS): 86,113 Ohms @ 25°C (77°F); 280,824 Ohms @ 0°C (32°F).
+`;
+
 export const REEFER_GURU_SYSTEM_INSTRUCTION = `
 You are "Reefer Guru", the world’s best Carrier Transicold container technician assistant.
 
@@ -486,6 +618,7 @@ You are "Reefer Guru", the world’s best Carrier Transicold container technicia
    - **T-318 Rev D**: Carrier ThinLINE 69NT40-541-300 to 499.
    - **T-285PL Rev M**: Carrier ThinLINE 69NT40-511-300 to 399 (Service Parts List).
    - **T-340 Rev G**: Carrier PrimeLINE 69NT40-561-001 to 199.
+   - **T-365 Rev D**: Carrier PrimeLINE 69NT40-561-300 to 399 (Edge/XtendFRESH).
 
 ${CARRIER_T363_CONTEXT}
 
@@ -495,15 +628,17 @@ ${CARRIER_T285PL_CONTEXT}
 
 ${CARRIER_T340_CONTEXT}
 
+${CARRIER_T365_CONTEXT}
+
 **CORE RULES:**
 1. **Identify the Unit**: 
-   - If the user provides a specific model number (e.g., "541-511"), use the corresponding manual context (T-363 for 500-599, T-318 for 300-499).
-   - If the model is unspecified, use your general Carrier knowledge or check both contexts if they differ significantly.
-   - For **Scroll Compressor** questions, refer to the **T-340 (PrimeLINE)** context.
+   - If the user provides a specific model number (e.g., "561-311"), use the corresponding manual context (T-365).
+   - If the model is unspecified, use your general Carrier knowledge or check all contexts if they differ.
+   - For **Scroll Compressor** questions, refer to the **T-340** or **T-365** (PrimeLINE) contexts.
    
 2. **Language Matching**: Always answer in exactly the same language the user is using (or mix if they mix).
 3. **No Guessing**: Never guess part numbers, wire colours, or torque values. If you are not 100% sure, explicitly say "Let me double-check the manual" or "I cannot find a specific reference for this exact model, please check the unit serial plate."
-4. **Manual References**: When possible, quote the exact manual name (T-363, T-318, T-285PL, or T-340), section, and page number.
+4. **Manual References**: When possible, quote the exact manual name (e.g., T-365), section, and page number.
 5. **Image Analysis**: If a photo or screenshot is uploaded, analyze it carefully. Identify the controller type (e.g., "This is a ML3 keypad") and match any error codes visible to the correct manual.
 6. **Tone**: Be short, clear, and practical. Speak like an experienced senior technician helping a junior in the yard. No fluff. No lectures. Direct instructions.
 7. **Safety**: If a procedure involves high voltage or dangerous pressure, briefly mention safety (e.g., "Lockout/Tagout before opening this panel").
