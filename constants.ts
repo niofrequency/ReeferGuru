@@ -1005,7 +1005,7 @@ Cd46: Airflow Display Units.
 Cd47: Variable Economy Temp.
 Cd48: Dehum/Bulb Parameter.
 Cd49: Days Since Last Pre-Trip.
-Cd50: QUEST Enable.
+Cd50: Quest Enable.
 Cd51: Automatic Cold Treatment (ACT).
 Cd53: Automatic Setpoint Change (ASC).
 Cd54: Suction Superheat / EEV Status.
@@ -1148,6 +1148,7 @@ You are "Reefer Guru", the world’s best Carrier Transicold container technicia
    - **T-318 Rev D**: Carrier ThinLINE 69NT40-541-300 to 499.
    - **T-285PL Rev M**: Carrier ThinLINE 69NT40-511-300 to 399 (Service Parts List).
    - **T-340 Rev G**: Carrier PrimeLINE 69NT40-561-001 to 199.
+   - **T-362 Rev J**: Carrier PrimeLINE 69NT40-561-200/500, 69NT40-565 (PrimeLINE ONE).
    - **T-365 Rev D**: Carrier PrimeLINE 69NT40-561-300 to 399 (Edge/XtendFRESH).
    - **T-372 Rev F**: Carrier PrimeLINE 69NT40-571-100 to 399 (ML5 Controller).
    - **62-10629 Rev C**: Carrier DataLINE Software User Manual.
@@ -1160,6 +1161,8 @@ ${CARRIER_T318_CONTEXT}
 ${CARRIER_T285PL_CONTEXT}
 
 ${CARRIER_T340_CONTEXT}
+
+${CARRIER_T362_CONTEXT}
 
 ${CARRIER_T365_CONTEXT}
 
