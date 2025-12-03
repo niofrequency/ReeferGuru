@@ -472,209 +472,6 @@ Standard (NTC): 10,000 Ohms @ 25°C (77°F).
 Discharge (CPDS): 86,113 Ohms @ 25°C (77°F); 280,824 Ohms @ 0°C (32°F).
 `;
 
-export const CARRIER_T362_CONTEXT = `
-*** SUPPLEMENTARY REFERENCE: Carrier PrimeLINE 69NT40-561-200 to 299, 69NT40-561-500 to 599, PrimeLINE ONE 69NT40-565-200 to 299, 69NT40-565-500 to 599 (T-362 Rev J) ***
-ALARM CODES (Table 4-5):
-AL03 Loss of Superheat Control: Superheat below 1.66°C (3°F) for 5 mins while compressor running. Check EEV, ETS1/ETS2, evaporator fans.
-AL05 Manual Defrost Switch Failure: Continuous activity >5 mins. Check keypad, reset unit.
-AL06 Keypad or Harness Fail: Continuous key activity. Reset unit, replace keypad/harness.
-AL07 Fresh Air Vent Open: Vent open with frozen setpoint or XtendFRESH. Reposition vent, check VPS.
-AL08 High Compressor Pressure Ratio: Ratio too high. Check DPT, airflow.
-AL09 O2 Sensor Failure: Reading out of range. Check O2 sensor, amplifier, wiring.
-AL10 CO2 Sensor Failure: Reading out of range. Check CO2 sensor, voltage, wiring.
-AL14 Phase Sequence Detect Fault: Unable to determine phase. Check wiring, power cycle.
-AL16 Compressor Current High: Over limit for 10 mins. Check current sensor, power supply, airflow.
-AL17 Compressor Pressure Delta Fault: Insufficient differential. Check DPT/SPT.
-AL18 Discharge Pressure High: Over max for 10 mins in hour. Check restrictions, filter drier, condenser fan, DPT, non-condensables, refrigerant level.
-AL19 Discharge Temperature High: >135°C (275°F) for 10 mins in hour. Check restrictions, airflow, non-condensables.
-AL20 Control Contactor Fuse (F3): Open. Check F3A/F3B, coils, ESV.
-AL21 Control Circuit Fuse (F1/F2): Open. Check sensors, wiring, controller.
-AL22 Evaporator IP: Open. Check evaporator motor IP.
-AL23 Loss of Phase B: No current draw. Check power source.
-AL24 Compressor IP: Open. Check compressor windings.
-AL25 Condenser IP: Open. Check condenser motor IP, airflow.
-AL26 All Sensors Failure: Out of range. Run P5.
-AL27 Analog to Digital Accuracy Failure: Controller faulty. Replace controller.
-AL28 Low Suction Pressure: Too low. Power cycle, check SPT/DPT.
-AL29 Loss of Atmospheric Control (XtendFRESH): CO2/O2 out of limits. Check solenoids, fans/scrubber, heater, container tightness.
-AL50 Air Vent Position Sensor (VPS): Out of range. Secure/tighten panel, replace VPS.
-AL51 EEPROM Failure: Memory failure. Attempt clear, replace controller.
-AL52 EEPROM Alarm List Full: Clear alarms.
-AL53 Battery Pack Failure: Low voltage. Charge 24h, replace battery.
-AL54 Primary Supply Sensor (STS): Invalid. Run P5, replace STS.
-AL56 Primary Return Sensor (RTS): Invalid. Run P5, replace RTS.
-AL57 Ambient Sensor (AMBS): Invalid. Replace AMBS.
-AL58 Compressor High Pressure Safety (HPS): Open >1 min. Test HPS, check airflow.
-AL59 Heater Termination Thermostat (HTT): Open. Check voltage at TP10, replace HTT.
-AL60 Defrost Temperature Sensor (DTS): Failure to open. Replace DTS.
-AL61 Heater Current Draw Fault: Improper draw. Check heaters, contactors.
-AL62 O2 Out of Range: >4% above setpoint. Check scrubber, solenoids, container tightness.
-AL63 Current Limit: Over limit. Check airflow, power supply, Cd32.
-AL64 Discharge Temp Sensor (CPDS): Out of range. Replace CPDS.
-AL65 Discharge Pressure Transducer (DPT): Out of range. Replace DPT.
-AL66 Suction/Evap Pressure Transducer (SPT/EPT): Out of range. Replace SPT/EPT.
-AL67 Humidity Sensor (HS): Out of range. Check connection, wiring, replace HS.
-AL69 Evaporator Temp Sensor (ETS1): Out of range. Replace ETS1.
-AL70 Secondary Supply Sensor (SRS): Out of range. Run P5, replace SRS.
-AL71 Secondary Return Sensor (RRS): Out of range. Run P5, replace RRS.
-FUNCTION CODES (Table 4-4):
-Cd01 Capacity Modulation (%): DUV % closed.
-Cd03 Compressor Motor Current: T3 leg current.
-Cd04-06 Line Current Phase A, B, C.
-Cd07 Main Power Voltage.
-Cd08 Main Power Frequency.
-Cd09 Ambient Air Temp.
-Cd10 Compressor Suction Temp / Evap Temp.
-Cd11 Compressor Dome / Discharge Temp.
-Cd12 Compressor Suction Port Pressure (EPT/SPT).
-Cd14 Compressor Discharge Pressure (DPT).
-Cd15 Digital Unloader Valve Status.
-Cd16 Compressor Motor Hour Meter / Unit Run Time.
-Cd17 Relative Humidity %.
-Cd18 Software Revision.
-Cd19 Battery Check.
-Cd20 Config/Model #.
-Cd21 Capacity Mode.
-Cd22 Compressor State.
-Cd23 Evaporator Fan State.
-Cd25 Time Remaining Until Defrost.
-Cd26 Defrost Temp Sensor (DTS).
-Cd27 Defrost Interval (Hours/Auto/PuLS).
-Cd28 Temp Units (C/F).
-Cd29 Failure Action Mode (A/B/C/D).
-Cd30 In-Range Tolerance.
-Cd31 Stagger Start Offset (Seconds).
-Cd32 System Current Limit (15-23 Amps).
-Cd33 Humidity Setpoint.
-Cd34 Economy Mode (On/Off).
-Cd35 Bulb Mode (Nor/bULb).
-Cd36 Evap Fan Speed Select (Alt/Lo/Hi).
-Cd37 Variable DTT Setting (Bulb).
-Cd38 Secondary Supply Temp (SRS).
-Cd39 Secondary Return Temp (RRS).
-Cd40 Container ID.
-Cd41 Valve Override (Service).
-Cd43 XtendFRESH Mode (FrESh/OFF/tESt/PUrgE).
-Cd44 XtendFRESH Values (CO2SP/CO2/O2SP/O2/O2V).
-Cd45 Vent Position Sensor (VPS).
-Cd46 Airflow Display Units (CF/CM/bOth).
-Cd47 Variable Economy Temp Setting.
-Cd48 Dehumidification/Bulb Parameter.
-Cd49 Days Since Last Pre-trip.
-Cd50 QUEST Enable/Disable (On/Off).
-Cd51 Automatic Cold Treatment (ACT) Mode Parameter.
-Cd53 Automatic Setpoint Change (ASC) Mode Parameter.
-Cd54 Suction Superheat / EEV Status.
-Cd55 Discharge Superheat.
-Cd58 Water Pressure Switch / Condenser Fan Switch.
-Cd59 Pump Down Logic.
-Cd60 Evaporator Fan Pulsing Temp Setting.
-Cd62 High Speed Evap Fan Setting (On/Off).
-Cd63 FuelWise (On/Off).
-Cd65 TripWise Setting (On/Off).
-Cd66 Instantaneous Power (kW).
-Cd67 Total Power (kW-hr).
-Cd70 Temp Setpoint Lock (On/Off).
-Cd75 Pharma Mode (On/Off/05/20).
-PRE-TRIP TESTS (Table 4-6):
-P0-0 Pre-Trip Initiated: Config, Lamps, Displays.
-P1-0 Heaters On: Current draw check.
-P1-1 Heaters Off: Current draw check.
-P2-0 Condenser Fan On: Current draw check.
-P2-1 Condenser Fan Off: Current draw check.
-P3-0 Low Speed Evap Fan On: Current draw check.
-P3-1 Low Speed Evap Fan Off: Current draw check.
-P4-0 High Speed Evap Fan On: Current draw check.
-P4-1 High Speed Evap Fan Off: Current draw check.
-P5-0 Supply/Return Probe Test.
-P5-1 Supply Probe Test.
-P5-2 Return Probe Test.
-P5-3 Evaporator Fan Direction Test.
-P5-7 Primary vs Secondary Evap Temp Sensor Test.
-P5-10 Humidity Sensor Installation Verification.
-P5-11 Humidity Sensor Range Check.
-P6-0 Discharge Thermistor Test.
-P6-1 Evap Temp Sensor (Suction) Test.
-P6-2 Discharge Pressure Transducer Test.
-P6-3 Suction Pressure Transducer Test.
-P6-4 Compressor Current Draw Test.
-P6-5 Compressor Leak Test.
-P6-6 Economizer Valve Test.
-P6-7 Digital Unloader Valve Test.
-P6-9 Liquid Injection Valve Test.
-P6-10 Electronic Expansion Valve Test.
-P7-0 High Pressure Switch Opening Test.
-P7-1 High Pressure Switch Closing Test.
-P8-0 Perishable Mode Test.
-P8-1 Perishable Mode Pull Down Test / CO2 Sensor Calibration.
-P8-2 Perishable Mode Maintain Temp Test.
-P9-0 DTT Closed and Open Test.
-P10-0 Frozen Mode Heat Test.
-P10-1 Frozen Mode Pulldown Test.
-P10-2 Frozen Mode Maintain Temp Test.
-TORQUE VALUES (Table 7-7):
-Bolt Diameter | Threads | In-Lb | Ft-Lb | Nm
-#4 | 40 | 5.2 | 0.4 | 0.6
-#6 | 32 | 9.6 | 0.8 | 1.1
-#8 | 32 | 20 | 1.7 | 2.3
-#10 | 24 | 23 | 1.9 | 2.6
-1/4 | 20 | 75 | 6.3 | 8.5
-5/16 | 18 | 132 | 11 | 14.9
-3/8 | 16 | 240 | 20 | 27.1
-7/16 | 14 | 372 | 31 | 42
-1/2 | 13 | 516 | 43 | 58.3
-9/16 | 12 | 684 | 57 | 77.3
-5/8 | 11 | 1104 | 92 | 124.7
-3/4 | 10 | 1488 | 124 | 168.1
-Non Free Spinning (Locknuts etc.)
-1/4 | 20 | 82.5 | 6.9 | 9.3
-5/16 | 18 | 145.2 | 12.1 | 16.4
-3/8 | 16 | 264 | 22.0 | 29.8
-7/16 | 14 | 409.2 | 34.1 | 46.2
-1/2 | 13 | 567.6 | 47.3 | 64.1
-9/16 | 12 | 752.4 | 62.7 | 85
-5/8 | 11 | 1214.4 | 101.2 | 137.2
-3/4 | 10 | 1636.8 | 136.4 | 184.9
-COMPRESSOR:
-Model: ZMD26KVE-TFD-272
-Weight (With Oil): 42.9 kg (95 lb)
-Approved Oil: Uniqema Emkarate RL-32-3MAF
-Oil Charge: 1774 ml (60 ounces)
-Removal/Replacement: Detailed steps including evacuation, torque values for connections (Suction/Discharge Rotalocks 108.5-135.5 Nm, Unloader 24.5-27 Nm, Economized 32.5-35 Nm), base bolts 6.2 mkg (45 ft-lbs).
-Process Lines Break-in: Run in full cool 10 mins, pump down to 1 psig, frontseat valves, recover refrigerant.
-SENSORS (Table 7-3 Resistance - AMBS, DTS, ETS, RRS, RTS, SRS, STS):
-[Full table of °C/°F to OHMS]
-SENSORS (Table 7-4 Resistance - CPDS):
-[Full table of °C/°F to OHMS]
-REFRIGERATION SYSTEM DATA (Table 3-1):
-Compressor Model: ZMD26KVE-TFD-272, Weight 42.9 kg, Oil Uniqema Emkarate RL-32-3MAF, Charge 1774 ml.
-EEV Superheat: 4.4-6.7°C at -18°C box.
-EXV Superheat: 4.4-11.1°C at -18°C box.
-HTT: Opens 54±3°C, Closes 38±4°C.
-HPS: Cut-Out 25±1 kg/cm², Cut-In 18±0.7 kg/cm².
-Refrigerant: R-134a/R-513A.
-Charge: Varies by PID and condenser type (4.26-4.99 kg).
-Fusible Plug: 99°C, Torque 6.2-6.9 mkg.
-Rupture Disc: 35 kg/cm², Torque 6.2-6.9 mkg.
-WPS: Cut-In 0.5±0.2 kg/cm², Cut-Out 1.6±0.4 kg/cm².
-ELECTRICAL DATA (Table 3-2):
-CB-1 25A trips 29A, CB-2 50A trips 62.5A / 70A 87.5A.
-CP FLA 13A @460VAC.
-CM FLA 0.71/0.72A, HP 0.21/0.36, RPM 1450/1750.
-Evap Coil Heaters: 6x750W @230VAC, Resistance 66.8-77.2 ohms.
-EM FLA HS 1.07/0.9A, LS 0.47A, HP HS 0.36/0.63, LS 0.05/0.8, RPM HS 2850/3450, LS 1425/1725.
-Fuses: F3A/F3B 7.5A, F1/F2 5A, FEB 10A.
-VPS: 0.5-4.5V over 90°.
-ESV Coils: 7.7 ohms @25°C, 0.7A max.
-DUV Coils: 14.8 ohms @20°C, 929mA max.
-HS: 5V input, 0-3.3V output (30% 0.99V, 50% 1.65V, 70% 2.31V, 90% 2.97V).
-Controller Setpoint: -35 to +30°C.
-SAFETY AND PROTECTIVE DEVICES (Table 3-3):
-Excessive current: CB-1 29A, CB-2 62.5/87.5A, F3A/F3B 7.5A, F1/F2 5A, FEB 10A.
-Motor windings: IP-CM/CP/EM auto reset.
-High side: Fusible Plug 99°C, Rupture Disc 35 kg/cm², HPS 25 kg/cm².
-`;
-
 export const CARRIER_T365_CONTEXT = `
 *** SUPPLEMENTARY REFERENCE: Carrier PrimeLINE 69NT40-561-300 to 399 (T-365 Rev D) ***
 SYSTEM: PrimeLINE (Scroll Compressor ZMD26K2E-TFD-274) with Micro-Link 3.
@@ -891,6 +688,209 @@ Extractor, Pin (Controller Module): 07-00329-00.
 Crimper, Pin (Controller Module): 07-00330-00.
 Application Gun: 07-00391-00.
 Software Card Programmer: 07-00398-00.
+`;
+
+export const CARRIER_T362_CONTEXT = `
+*** SUPPLEMENTARY REFERENCE: Carrier PrimeLINE 69NT40-561-200 to 299, 69NT40-561-500 to 599, PrimeLINE ONE 69NT40-565-200 to 299, 69NT40-565-500 to 599 (T-362 Rev J) ***
+ALARM CODES (Table 4-5):
+AL03 Loss of Superheat Control: Superheat below 1.66°C (3°F) for 5 mins while compressor running. Check EEV, ETS1/ETS2, evaporator fans.
+AL05 Manual Defrost Switch Failure: Continuous activity >5 mins. Check keypad, reset unit.
+AL06 Keypad or Harness Fail: Continuous key activity. Reset unit, replace keypad/harness.
+AL07 Fresh Air Vent Open: Vent open with frozen setpoint or XtendFRESH. Reposition vent, check VPS.
+AL08 High Compressor Pressure Ratio: Ratio too high. Check DPT, airflow.
+AL09 O2 Sensor Failure: Reading out of range. Check O2 sensor, amplifier, wiring.
+AL10 CO2 Sensor Failure: Reading out of range. Check CO2 sensor, voltage, wiring.
+AL14 Phase Sequence Detect Fault: Unable to determine phase. Check wiring, power cycle.
+AL16 Compressor Current High: Over limit for 10 mins. Check current sensor, power supply, airflow.
+AL17 Compressor Pressure Delta Fault: Insufficient differential. Check DPT/SPT.
+AL18 Discharge Pressure High: Over max for 10 mins in hour. Check restrictions, filter drier, condenser fan, DPT, non-condensables, refrigerant level.
+AL19 Discharge Temperature High: >135°C (275°F) for 10 mins in hour. Check restrictions, airflow, non-condensables.
+AL20 Control Contactor Fuse (F3): Open. Check F3A/F3B, coils, ESV.
+AL21 Control Circuit Fuse (F1/F2): Open. Check sensors, wiring, controller.
+AL22 Evaporator IP: Open. Check evaporator motor IP.
+AL23 Loss of Phase B: No current draw. Check power source.
+AL24 Compressor IP: Open. Check compressor windings.
+AL25 Condenser IP: Open. Check condenser motor IP, airflow.
+AL26 All Sensors Failure: Out of range. Run P5.
+AL27 Analog to Digital Accuracy Failure: Controller faulty. Replace controller.
+AL28 Low Suction Pressure: Too low. Power cycle, check SPT/DPT.
+AL29 Loss of Atmospheric Control (XtendFRESH): CO2/O2 out of limits. Check solenoids, fans/scrubber, heater, container tightness.
+AL50 Air Vent Position Sensor (VPS): Out of range. Secure/tighten panel, replace VPS.
+AL51 EEPROM Failure: Memory failure. Attempt clear, replace controller.
+AL52 EEPROM Alarm List Full: Clear alarms.
+AL53 Battery Pack Failure: Low voltage. Charge 24h, replace battery.
+AL54 Primary Supply Sensor (STS): Invalid. Run P5, replace STS.
+AL56 Primary Return Sensor (RTS): Invalid. Run P5, replace RTS.
+AL57 Ambient Sensor (AMBS): Invalid. Replace AMBS.
+AL58 Compressor High Pressure Safety (HPS): Open >1 min. Test HPS, check airflow.
+AL59 Heater Termination Thermostat (HTT): Open. Check voltage at TP10, replace HTT.
+AL60 Defrost Temperature Sensor (DTS): Failure to open. Replace DTS.
+AL61 Heater Current Draw Fault: Improper draw. Check heaters, contactors.
+AL62 O2 Out of Range: >4% above setpoint. Check scrubber, solenoids, container tightness.
+AL63 Current Limit: Over limit. Check airflow, power supply, Cd32.
+AL64 Discharge Temp Sensor (CPDS): Out of range. Replace CPDS.
+AL65 Discharge Pressure Transducer (DPT): Out of range. Replace DPT.
+AL66 Suction/Evap Pressure Transducer (SPT/EPT): Out of range. Replace SPT/EPT.
+AL67 Humidity Sensor (HS): Out of range. Check connection, wiring, replace HS.
+AL69 Evaporator Temp Sensor (ETS1): Out of range. Replace ETS1.
+AL70 Secondary Supply Sensor (SRS): Out of range. Run P5, replace SRS.
+AL71 Secondary Return Sensor (RRS): Out of range. Run P5, replace RRS.
+FUNCTION CODES (Table 4-4):
+Cd01 Capacity Modulation (%): DUV % closed.
+Cd03 Compressor Motor Current: T3 leg current.
+Cd04-06 Line Current Phase A, B, C.
+Cd07 Main Power Voltage.
+Cd08 Main Power Frequency.
+Cd09 Ambient Air Temp.
+Cd10 Compressor Suction Temp / Evap Temp.
+Cd11 Compressor Dome / Discharge Temp.
+Cd12 Compressor Suction Port Pressure (EPT/SPT).
+Cd14 Compressor Discharge Pressure (DPT).
+Cd15 Digital Unloader Valve Status.
+Cd16 Compressor Motor Hour Meter / Unit Run Time.
+Cd17 Relative Humidity %.
+Cd18 Software Revision.
+Cd19 Battery Check.
+Cd20 Config/Model #.
+Cd21 Capacity Mode.
+Cd22 Compressor State.
+Cd23 Evaporator Fan State.
+Cd25 Time Remaining Until Defrost.
+Cd26 Defrost Temp Sensor (DTS).
+Cd27 Defrost Interval (Hours/Auto/PuLS).
+Cd28 Temp Units (C/F).
+Cd29 Failure Action Mode (A/B/C/D).
+Cd30 In-Range Tolerance.
+Cd31 Stagger Start Offset (Seconds).
+Cd32 System Current Limit (15-23 Amps).
+Cd33 Humidity Setpoint.
+Cd34 Economy Mode (On/Off).
+Cd35 Bulb Mode (Nor/bULb).
+Cd36 Evap Fan Speed Select (Alt/Lo/Hi).
+Cd37 Variable DTT Setting (Bulb).
+Cd38 Secondary Supply Temp (SRS).
+Cd39 Secondary Return Temp (RRS).
+Cd40 Container ID.
+Cd41 Valve Override (Service).
+Cd43 XtendFRESH Mode (FrESh/OFF/tESt/PUrgE).
+Cd44 XtendFRESH Values (CO2SP/CO2/O2SP/O2/O2V).
+Cd45 Vent Position Sensor (VPS).
+Cd46 Airflow Display Units (CF/CM/bOth).
+Cd47 Variable Economy Temp Setting.
+Cd48 Dehumidification/Bulb Parameter.
+Cd49 Days Since Last Pre-trip.
+Cd50 QUEST Enable/Disable (On/Off).
+Cd51 Automatic Cold Treatment (ACT) Mode Parameter.
+Cd53 Automatic Setpoint Change (ASC) Mode Parameter.
+Cd54 Suction Superheat / EEV Status.
+Cd55 Discharge Superheat.
+Cd58 Water Pressure Switch / Condenser Fan Switch.
+Cd59 Pump Down Logic.
+Cd60 Evaporator Fan Pulsing Temp Setting.
+Cd62 High Speed Evap Fan Setting (On/Off).
+Cd63 FuelWise (On/Off).
+Cd65 TripWise Setting (On/Off).
+Cd66 Instantaneous Power (kW).
+Cd67 Total Power (kW-hr).
+Cd70 Temp Setpoint Lock (On/Off).
+Cd75 Pharma Mode (On/Off/05/20).
+PRE-TRIP TESTS (Table 4-6):
+P0-0 Pre-Trip Initiated: Config, Lamps, Displays.
+P1-0 Heaters On: Current draw check.
+P1-1 Heaters Off: Current draw check.
+P2-0 Condenser Fan On: Current draw check.
+P2-1 Condenser Fan Off: Current draw check.
+P3-0 Low Speed Evap Fan On: Current draw check.
+P3-1 Low Speed Evap Fan Off: Current draw check.
+P4-0 High Speed Evap Fan On: Current draw check.
+P4-1 High Speed Evap Fan Off: Current draw check.
+P5-0 Supply/Return Probe Test.
+P5-1 Supply Probe Test.
+P5-2 Return Probe Test.
+P5-3 Evaporator Fan Direction Test.
+P5-7 Primary vs Secondary Evap Temp Sensor Test.
+P5-10 Humidity Sensor Installation Verification.
+P5-11 Humidity Sensor Range Check.
+P6-0 Discharge Thermistor Test.
+P6-1 Evap Temp Sensor (Suction) Test.
+P6-2 Discharge Pressure Transducer Test.
+P6-3 Suction Pressure Transducer Test.
+P6-4 Compressor Current Draw Test.
+P6-5 Compressor Leak Test.
+P6-6 Economizer Valve Test.
+P6-7 Digital Unloader Valve Test.
+P6-9 Liquid Injection Valve Test.
+P6-10 Electronic Expansion Valve Test.
+P7-0 High Pressure Switch Opening Test.
+P7-1 High Pressure Switch Closing Test.
+P8-0 Perishable Mode Test.
+P8-1 Perishable Mode Pull Down Test / CO2 Sensor Calibration.
+P8-2 Perishable Mode Maintain Temp Test.
+P9-0 DTT Closed and Open Test.
+P10-0 Frozen Mode Heat Test.
+P10-1 Frozen Mode Pulldown Test.
+P10-2 Frozen Mode Maintain Temp Test.
+TORQUE VALUES (Table 7-7):
+Bolt Diameter | Threads | In-Lb | Ft-Lb | Nm
+#4 | 40 | 5.2 | 0.4 | 0.6
+#6 | 32 | 9.6 | 0.8 | 1.1
+#8 | 32 | 20 | 1.7 | 2.3
+#10 | 24 | 23 | 1.9 | 2.6
+1/4 | 20 | 75 | 6.3 | 8.5
+5/16 | 18 | 132 | 11 | 14.9
+3/8 | 16 | 240 | 20 | 27.1
+7/16 | 14 | 372 | 31 | 42
+1/2 | 13 | 516 | 43 | 58.3
+9/16 | 12 | 684 | 57 | 77.3
+5/8 | 11 | 1104 | 92 | 124.7
+3/4 | 10 | 1488 | 124 | 168.1
+Non Free Spinning (Locknuts etc.)
+1/4 | 20 | 82.5 | 6.9 | 9.3
+5/16 | 18 | 145.2 | 12.1 | 16.4
+3/8 | 16 | 264 | 22.0 | 29.8
+7/16 | 14 | 409.2 | 34.1 | 46.2
+1/2 | 13 | 567.6 | 47.3 | 64.1
+9/16 | 12 | 752.4 | 62.7 | 85
+5/8 | 11 | 1214.4 | 101.2 | 137.2
+3/4 | 10 | 1636.8 | 136.4 | 184.9
+COMPRESSOR:
+Model: ZMD26KVE-TFD-272
+Weight (With Oil): 42.9 kg (95 lb)
+Approved Oil: Uniqema Emkarate RL-32-3MAF
+Oil Charge: 1774 ml (60 ounces)
+Removal/Replacement: Detailed steps including evacuation, torque values for connections (Suction/Discharge Rotalocks 108.5-135.5 Nm, Unloader 24.5-27 Nm, Economized 32.5-35 Nm), base bolts 6.2 mkg (45 ft-lbs).
+Process Lines Break-in: Run in full cool 10 mins, pump down to 1 psig, frontseat valves, recover refrigerant.
+SENSORS (Table 7-3 Resistance - AMBS, DTS, ETS, RRS, RTS, SRS, STS):
+[Full table of °C/°F to OHMS]
+SENSORS (Table 7-4 Resistance - CPDS):
+[Full table of °C/°F to OHMS]
+REFRIGERATION SYSTEM DATA (Table 3-1):
+Compressor Model: ZMD26KVE-TFD-272, Weight 42.9 kg, Oil Uniqema Emkarate RL-32-3MAF, Charge 1774 ml.
+EEV Superheat: 4.4-6.7°C at -18°C box.
+EXV Superheat: 4.4-11.1°C at -18°C box.
+HTT: Opens 54±3°C, Closes 38±4°C.
+HPS: Cut-Out 25±1 kg/cm², Cut-In 18±0.7 kg/cm².
+Refrigerant: R-134a/R-513A.
+Charge: Varies by PID and condenser type (4.26-4.99 kg).
+Fusible Plug: 99°C, Torque 6.2-6.9 mkg.
+Rupture Disc: 35 kg/cm², Torque 6.2-6.9 mkg.
+WPS: Cut-In 0.5±0.2 kg/cm², Cut-Out 1.6±0.4 kg/cm².
+ELECTRICAL DATA (Table 3-2):
+CB-1 25A trips 29A, CB-2 50A trips 62.5A / 70A 87.5A.
+CP FLA 13A @460VAC.
+CM FLA 0.71/0.72A, HP 0.21/0.36, RPM 1450/1750.
+Evap Coil Heaters: 6x750W @230VAC, Resistance 66.8-77.2 ohms.
+EM FLA HS 1.07/0.9A, LS 0.47A, HP HS 0.36/0.63, LS 0.05/0.8, RPM HS 2850/3450, LS 1425/1725.
+Fuses: F3A/F3B 7.5A, F1/F2 5A, FEB 10A.
+VPS: 0.5-4.5V over 90°.
+ESV Coils: 7.7 ohms @25°C, 0.7A max.
+DUV Coils: 14.8 ohms @20°C, 929mA max.
+HS: 5V input, 0-3.3V output (30% 0.99V, 50% 1.65V, 70% 2.31V, 90% 2.97V).
+Controller Setpoint: -35 to +30°C.
+SAFETY AND PROTECTIVE DEVICES (Table 3-3):
+Excessive current: CB-1 29A, CB-2 62.5/87.5A, F3A/F3B 7.5A, F1/F2 5A, FEB 10A.
+Motor windings: IP-CM/CP/EM auto reset.
+High side: Fusible Plug 99°C, Rupture Disc 35 kg/cm², HPS 25 kg/cm².
 `;
 
 export const CARRIER_T372_CONTEXT = `
