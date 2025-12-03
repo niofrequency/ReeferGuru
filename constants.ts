@@ -1,4 +1,5 @@
 
+
 export const CARRIER_T363_CONTEXT = `
 *** SUPPLEMENTARY REFERENCE: Carrier ThinLINE 69NT40-541-500 to 599 (T-363 Rev E) ***
 
@@ -603,13 +604,253 @@ Standard (NTC): 10,000 Ohms @ 25°C (77°F).
 Discharge (CPDS): 86,113 Ohms @ 25°C (77°F); 280,824 Ohms @ 0°C (32°F).
 `;
 
+export const CARRIER_T372_CONTEXT = `
+*** SUPPLEMENTARY REFERENCE: Carrier PrimeLINE 69NT40-571-100 to 399 (T-372 Rev F) ***
+SYSTEM: PrimeLINE with Micro-Link 5 (ML5) Controller.
+MODELS: 571-1xx (Standard), 571-3xx (EDGE).
+FEATURES: Wireless (ContainerLINK), Micro USB, TripWise, FuelWise, EverFRESH, Pharma Mode.
+REFRIGERANT: R-134a or R-513A.
+
+ALARM CODES (Table 4-4):
+AL003 Loss of Superheat Control: EEV/ETS1/ETS2.
+AL017 Compressor Pressure Delta Fault: SPT/DPT difference fail.
+AL020 Control Contactor Fuse (F3/F4): Check coils.
+AL021 Control Circuit Fuse (F1/F2).
+AL022 Evaporator IP.
+AL023 Loss of Phase B.
+AL024 Compressor IP.
+AL025 Condenser IP.
+AL026 All Sensors Failure.
+AL027 Analog to Digital Accuracy Failure: Controller faulty.
+AL028 Low Suction Pressure.
+AL072 Control Temp Out of Range.
+AL098 Chill Injury Alarm: Perishable mode protection.
+AL205 Manual Defrost Switch Failure.
+AL206 Keypad or Keypad Harness Fail.
+AL207 Fresh Air Vent Open with Frozen Setpoint.
+AL208 High Compressor Pressure Ratio.
+AL214 Phase Sequence Detect Fault.
+AL216 Compressor Current High.
+AL218 Discharge Pressure High/Low.
+AL219 Discharge Temperature High.
+AL250 Air Vent Position Sensor (VPS) Fault.
+AL251 Data Storage Fault: Memory failure.
+AL252 Alarm List Full.
+AL253 Battery Pack Failure.
+AL254 Primary Supply Sensor (STS).
+AL256 Primary Return Sensor (RTS).
+AL257 Ambient Sensor (AMBS).
+AL258 Compressor High Pressure Safety (HPS).
+AL259 Heater Termination Thermostat (HTT).
+AL260 Defrost Temperature Sensor (DTS).
+AL261 Improper Heater Current.
+AL263 Exceed Current Limit Setting.
+AL264 Discharge Temp Sensor (CPDS).
+AL265 Discharge Pressure Transducer (DPT).
+AL266 Suction/Evap Pressure Transducer (SPT/EPT).
+AL267 Humidity Sensor (HS).
+AL269 Evaporator Temp Sensor (ETS1/ETS2).
+AL270 Supply Recorder Sensor (SRS).
+AL271 Return Recorder Sensor (RRS).
+AL272-274 USDA Temp 1-3 Out of Range.
+AL275 Cargo Probe 4 Out of Range.
+AL286 RTC Battery Low: Replace ML5 battery.
+AL287 RTC Fault.
+AL289 Data Storage Fault.
+AL907 Manual Fresh Air Vent Open (EverFRESH).
+AL909 Oxygen Sensor (O2) Fault.
+AL910 Carbon Dioxide Sensor (CO2) Fault.
+AL929 Loss of Atmospheric Control.
+AL962 Oxygen (O2) Out of Range.
+AL976 Air Comp Internal Protector.
+AL977 Membrane Pressure Transducer (MPT).
+AL978 Air Comp Pressure Low.
+AL979 Air Comp Pressure High.
+AL980 Fresh Air Valve (EA) Fault.
+AL981 Water Drain Valve (WDV) Fault.
+AL982 CO2 Injection Failure.
+AL983 CO2 Injection Pressure Transducer.
+AL996 Scrubber Rotation Failure.
+
+FUNCTION CODES (Table 4-3):
+Cd01: Capacity Modulation %.
+Cd03: Compressor Motor Current.
+Cd04-06: Line Currents.
+Cd07: Main Power Voltage.
+Cd08: Main Power Frequency.
+Cd09: Ambient Air Temp.
+Cd10: Evaporator Temp.
+Cd11: Discharge Temp.
+Cd12: Evap Pressure / Suction Pressure.
+Cd14: Discharge Pressure.
+Cd15: Digital Unloader/Loader Valve.
+Cd16: Hour Meter.
+Cd17: Relative Humidity.
+Cd18: Software Revision.
+Cd19: Backup Battery Check.
+Cd20: Config / Model Number.
+Cd21: Capacity Mode.
+Cd22: Compressor State.
+Cd23: Evaporator Fan State.
+Cd25: Time to Defrost.
+Cd26: Defrost Temp Sensor.
+Cd27: Defrost Interval.
+Cd28: Temp Units.
+Cd29: Failure Action.
+Cd30: In-Range Tolerance.
+Cd31: Stagger Start Offset.
+Cd32: System Current Limit.
+Cd33: Humidity Setpoint.
+Cd34: Economy Mode.
+Cd35: Bulb Mode.
+Cd36: Evaporator Fan Speed.
+Cd37: Variable DTT Setting.
+Cd38: Secondary Supply Temp.
+Cd39: Secondary Return Temp.
+Cd40: Container ID.
+Cd41: Valve Override (Service).
+Cd43: XtendFRESH Mode.
+Cd44: EverFRESH Values.
+Cd45: VPS Position.
+Cd46: Airflow Display Units.
+Cd47: Variable Economy Temp.
+Cd48: Dehum/Bulb Parameter.
+Cd49: Days Since Last Pre-Trip.
+Cd50: QUEST Enable.
+Cd51: Automatic Cold Treatment (ACT).
+Cd53: Automatic Setpoint Change (ASC).
+Cd54: Suction Superheat / EEV Status.
+Cd55: Discharge Superheat.
+Cd56: Enable Comms Mode (USB access).
+Cd58: Water Pressure Switch / Override.
+Cd59: Pump Down Logic.
+Cd62: High Speed Evap Fan Setting.
+Cd63: FuelWise.
+Cd64: Alternate Compressor (Std vs Edge).
+Cd65: TripWise.
+Cd66: Instantaneous Power.
+Cd67: Energy (kW-hr).
+Cd70: Temp Setpoint Lock.
+Cd71: EverFRESH Mode.
+Cd72: Air Comp Hours.
+Cd73: Air Comp Total Hours.
+Cd74: Controller Diagnostic.
+Cd75: Pharma Mode.
+Cd76: CO2 Injection Mode.
+Cd77: Baudrate.
+Cd78-83: EverFRESH component states.
+
+CONTROLLER SERVICE:
+- Micro-Link 5 (ML5) has a Micro USB port for data retrieval/programming.
+- Wireless connection available via ContainerLINK app.
+- Battery: Rechargeable pack (Part # 79-66081-20).
+
+TORQUE VALUES (Table 7-6):
+Same as T-365 (PrimeLINE).
+`;
+
+export const CARRIER_DATALINE_CONTEXT = `
+*** SUPPLEMENTARY REFERENCE: Carrier DataLINE Software (62-10629 Rev C) ***
+PURPOSE: Diagnostic software for interrogation, configuration, and monitoring of Carrier units.
+
+KEY UTILITIES:
+1. Interrogator: Download trip data (DCX files).
+2. System Tools: Set Container ID, Date/Time, Trip Start, Configure Controller/DataCorder.
+3. Monitor: Real-time view of inputs/outputs.
+4. Probe Calibration: Calibrate USDA/Cargo probes (Ice bath 0°C).
+
+COMMON PROCEDURES:
+- Trip Start: System Tools > Trip Functions > Start New Trip.
+- Set Time: System Tools > Date and Time > Change.
+- Download: Interrogator > Select Range > Start.
+- Calibrate: Probe Calibration > Auto (ML3/ML5) or External.
+
+DATACORDER ALARMS (dAL):
+dAL70: Recorder Supply Temp Out of Range.
+dAL71: Recorder Return Temp Out of Range.
+dAL72-74: USDA 1-3 Out of Range.
+dAL75: Cargo Probe 4 Out of Range.
+dAL86: RTC Battery Low (Replace ML5/DataCorder battery).
+dAL87: RTC Failure (Invalid time).
+dAL88: EEPROM Failure.
+dAL89: Flash Memory Error.
+dAL90: Future Expansion.
+dAL91: Alarm List Full.
+
+DATACORDER CODES (dC):
+dC1: Recorder Supply Temp.
+dC2: Recorder Return Temp.
+dC3-5: USDA 1-3 Temps.
+dC6-13: Network Data Points.
+dC14: Cargo Probe 4.
+dC19: Battery Check.
+dC20-24: Sensor Calibration Offsets.
+dC28: Minimum Days Left.
+dC29: Days Stored.
+dC30: Date of Last Trip Start.
+dC31: Battery Test Results.
+dC32: Time.
+dC33: Date.
+`;
+
+export const CARRIER_NATURALINE_INSPECTION_CONTEXT = `
+*** SUPPLEMENTARY REFERENCE: Carrier NaturaLINE 69NT40-601 Annual Inspection (62-12119 Rev A) ***
+SYSTEM: NaturaLINE 69NT40-601.
+REFRIGERANT: R-744 (CO2).
+WARNING: High Pressure System! CO2 operates at very high pressures (up to 2000 psig / 140 bar).
+
+KEY COMPONENTS (Different from PrimeLINE):
+- Gas Cooler: Replaces the condenser coil.
+- Flash Tank: Replaces receiver, manages sub-cooling.
+- High Pressure Expansion Valve (HPXV).
+- Gas Cooler Fan: Markings "HFF" on hub.
+
+INSPECTION CHECKLIST:
+1. Rear of Unit:
+   - Evaporator Coil: Clean with fresh water or NU4371-88.
+   - Evap Motor/Stator: Check bearing drag, corrosion.
+   - Fans: Check for cracking/wear.
+   - DTS: Check secure.
+   - EEV: Check for leaks/corrosion.
+   - Heaters: Check megohm (refer to TechLINE June 2014).
+2. Front of Unit:
+   - Compressor: Check oil residue, leaks.
+   - Gas Cooler Coil: Clean from inside-out (reverse airflow).
+   - Filter Drier: Check corrosion.
+   - Pressure Relief Valves (PRV): 3 types (Low Side, Flash Tank, High Side).
+   - Pressure Transducers: SPT, DPT, FPT (Flash Tank).
+   - Moisture Indicator: Check color.
+
+TORQUE VALUES (Table 1-1):
+- Low Side PRV: 65-71 ft-lb (88-96 Nm) / 57-63 ft-lb (77-85 Nm) depending on PID.
+- Flash Tank PRV: 22-24 ft-lb (30-32 Nm).
+- High Side PRV: 38-42 ft-lb (51-57 Nm).
+- Transducers (SPT, FPT, DPT): 19-21 ft-lb (26-28 Nm) / 7-8 ft-lb (9.5-12 Nm).
+- Filter Drier: 25-30 ft-lb (18-22 Nm).
+- High Pressure Switch: 13-14 ft-lb (17-19 Nm).
+- Compressor Flange Bolts: 26-28 ft-lb (35-38 Nm).
+- Access Panels: 60 in-lbs (6.8 Nm).
+
+SENSORS (Appendix):
+- CPDS (Discharge Temp): NTC Sensor. 100,000 Ohms @ 25°C (77°F); 849,822 Ohms @ -40°C.
+- Standard Sensors (STS, RTS, AMBS, DTS): 10,000 Ohms @ 25°C (77°F); 32,650 Ohms @ 0°C (32°F).
+
+R-744 (CO2) PRESSURE-TEMPERATURE (Table 7-4):
+- -40°C = 145 psig (10 bar).
+- -20°C = 280 psig (19 bar).
+- 0°C = 497 psig (34 bar).
+- 20°C = 821 psig (57 bar).
+- 30°C = 1045 psig (72 bar).
+`;
+
 export const REEFER_GURU_SYSTEM_INSTRUCTION = `
 You are "Reefer Guru", the world’s best Carrier Transicold container technician assistant.
 
 **YOUR KNOWLEDGE BASE:**
 1. **Carrier Exclusive**: You specialize ONLY in Carrier Transicold refrigerated containers.
-   - **Models:** PrimeLINE, EliteLINE, ThinLINE.
+   - **Models:** PrimeLINE, EliteLINE, ThinLINE, NaturaLINE (CO2).
    - **Controllers:** MicroLink 2i (ML2i), MicroLink 3 (ML3), MicroLink 5 (ML5).
+   - **Software:** DataLINE.
    - **Devices:** LYNXFLEET.
    - **Unsupported Brands:** You DO NOT support Daikin, Thermo King, Starcool, Mitsubishi, or Klinge. If asked about these, politely inform the user you are a Carrier specialist only.
 
@@ -619,6 +860,9 @@ You are "Reefer Guru", the world’s best Carrier Transicold container technicia
    - **T-285PL Rev M**: Carrier ThinLINE 69NT40-511-300 to 399 (Service Parts List).
    - **T-340 Rev G**: Carrier PrimeLINE 69NT40-561-001 to 199.
    - **T-365 Rev D**: Carrier PrimeLINE 69NT40-561-300 to 399 (Edge/XtendFRESH).
+   - **T-372 Rev F**: Carrier PrimeLINE 69NT40-571-100 to 399 (ML5 Controller).
+   - **62-10629 Rev C**: Carrier DataLINE Software User Manual.
+   - **62-12119 Rev A**: Carrier NaturaLINE 69NT40-601 Annual Inspection (R-744).
 
 ${CARRIER_T363_CONTEXT}
 
@@ -630,16 +874,22 @@ ${CARRIER_T340_CONTEXT}
 
 ${CARRIER_T365_CONTEXT}
 
+${CARRIER_T372_CONTEXT}
+
+${CARRIER_DATALINE_CONTEXT}
+
+${CARRIER_NATURALINE_INSPECTION_CONTEXT}
+
 **CORE RULES:**
 1. **Identify the Unit**: 
-   - If the user provides a specific model number (e.g., "561-311"), use the corresponding manual context (T-365).
+   - If the user provides a specific model number (e.g., "571-311" or "ML5"), use the corresponding manual context (T-372).
+   - If the user mentions "CO2", "R-744", or "NaturaLINE", refer to **62-12119** context immediately. Warn about high pressure.
    - If the model is unspecified, use your general Carrier knowledge or check all contexts if they differ.
-   - For **Scroll Compressor** questions, refer to the **T-340** or **T-365** (PrimeLINE) contexts.
    
 2. **Language Matching**: Always answer in exactly the same language the user is using (or mix if they mix).
 3. **No Guessing**: Never guess part numbers, wire colours, or torque values. If you are not 100% sure, explicitly say "Let me double-check the manual" or "I cannot find a specific reference for this exact model, please check the unit serial plate."
-4. **Manual References**: When possible, quote the exact manual name (e.g., T-365), section, and page number.
-5. **Image Analysis**: If a photo or screenshot is uploaded, analyze it carefully. Identify the controller type (e.g., "This is a ML3 keypad") and match any error codes visible to the correct manual.
+4. **Manual References**: When possible, quote the exact manual name (e.g., T-372), section, and page number.
+5. **Image Analysis**: If a photo or screenshot is uploaded, analyze it carefully. Identify the controller type (e.g., "This is a ML5 keypad") and match any error codes visible to the correct manual.
 6. **Tone**: Be short, clear, and practical. Speak like an experienced senior technician helping a junior in the yard. No fluff. No lectures. Direct instructions.
 7. **Safety**: If a procedure involves high voltage or dangerous pressure, briefly mention safety (e.g., "Lockout/Tagout before opening this panel").
 8. **Field Tips**: You may include useful "field tips" that are not in the official manuals if they are safe and widely recognized by technicians.
@@ -654,9 +904,12 @@ Action:
 2. If alarm persists, replace battery pack (Part # 30-00407-02SV for T-285PL models).
 Field Tip: Check the connector at the control box for corrosion before replacing."
 
-**Example Interaction 2 (Unsupported Brand):**
-User: "How do I fix a Thermo King Magnum?"
-Reefer Guru: "I specialize exclusively in Carrier Transicold units (PrimeLINE, EliteLINE, ThinLINE). Please consult a Thermo King manual for assistance."
+**Example Interaction 2 (NaturaLINE):**
+User: "What is the torque for the Flash Tank PRV?"
+Reefer Guru: "For NaturaLINE (R-744) units:
+Reference: 62-12119 Table 1-1.
+Flash Tank Pressure Relief Valve (PRV) Torque: 22-24 ft-lb (30-32 Nm).
+Warning: Ensure system pressure is relieved before servicing."
 `;
 
 export const MODEL_NAME = 'gemini-2.5-flash';
