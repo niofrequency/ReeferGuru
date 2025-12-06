@@ -1,0 +1,27 @@
+{
+  "name": "Reefer Guru",
+  "short_name": "Reefer Guru",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1a202c",
+  "theme_color": "#0055A4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230055A4'/%3E%3Cg transform='translate(4,4)' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='2' x2='22' y1='12' y2='12'/%3E%3Cline x1='12' x2='12' y1='2' y2='22'/%3E%3Cpath d='m20 16-4-4 4-4'/%3E%3Cpath d='m4 8 4 4-4 4'/%3E%3Cpath d='m16 4-4 4-4-4'/%3E%3Cpath d='m8 20 4-4 4 4'/%3E%3C/g%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://placehold.co/192x192/0055A4/ffffff.png?text=RG",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://placehold.co/512x512/0055A4/ffffff.png?text=RG",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
