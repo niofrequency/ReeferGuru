@@ -3,8 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- PWA & Mobile -->
+    <meta name="theme-color" content="#0055A4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Reefer Guru">
+    
+    <!-- Open Graph / Social Sharing (WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Reefer Guru - AI Technician Assistant">
+    <meta property="og:description" content="The ultimate AI assistant for Carrier Transicold container technicians. Expert knowledge on PrimeLINE, EliteLINE, and ThinLINE units.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0055A4/ffffff.png?text=Reefer+Guru&font=roboto">
+    <meta property="og:site_name" content="Reefer Guru">
+
     <title>Reefer Guru</title>
+    
+    <!-- Icons -->
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230055A4'/%3E%3Cg transform='translate(4,4)' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='2' x2='22' y1='12' y2='12'/%3E%3Cline x1='12' x2='12' y1='2' y2='22'/%3E%3Cpath d='m20 16-4-4 4-4'/%3E%3Cpath d='m4 8 4 4-4 4'/%3E%3Cpath d='m16 4-4 4-4-4'/%3E%3Cpath d='m8 20 4-4 4 4'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="apple-touch-icon" href="https://placehold.co/180x180/0055A4/ffffff.png?text=RG">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -58,10 +77,8 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-gray-50 text-slate-900 fixed inset-0 h-full w-full overflow-hidden selection:bg-reefer-blue selection:text-white dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
     <div id="root" class="h-full"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+  </body>
 </html>
