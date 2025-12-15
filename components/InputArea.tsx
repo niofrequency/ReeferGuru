@@ -44,7 +44,7 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
           onSubmit={handleAIInputSubmit}
-          placeholder="Ask Reefer Guru or upload a photo..."
+          placeholder="Ask Reefer Guru ..."
           loading={isSending}
         />
         
