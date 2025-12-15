@@ -117,7 +117,7 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
           <button
             onClick={() => fileInputRef.current?.click()}
             disabled={isSending}
-            className="flex-shrink-0 p-2.5 ml-1 mb-0.5 text-gray-400 hover:text-reefer-blue dark:text-gray-500 dark:hover:text-reefer-blue bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+            className="flex-shrink-0 p-2.5 ml-1 mb-1 text-gray-400 hover:text-reefer-blue dark:text-gray-500 dark:hover:text-reefer-blue bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
             title="Upload image"
           >
             <Paperclip size={20} />
@@ -149,7 +149,7 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
           <button
             onClick={handleSend}
             disabled={(!text.trim() && !attachment) || isSending}
-            className={`flex-shrink-0 p-2.5 mr-1 mb-0.5 rounded-full transition-all duration-200 flex items-center justify-center
+            className={`flex-shrink-0 p-2.5 mr-1 mb-1 rounded-full transition-all duration-200 flex items-center justify-center
               ${(!text.trim() && !attachment) || isSending
                 ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                 : 'bg-reefer-blue text-white shadow-sm hover:bg-blue-700 hover:shadow-md active:scale-95'
