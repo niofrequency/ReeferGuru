@@ -40,16 +40,16 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-950 p-2 w-full z-20 transition-colors duration-300">
+    <div className="absolute bottom-0 left-0 w-full z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent dark:from-gray-950 dark:via-gray-950/95 dark:to-transparent transition-colors duration-300">
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
           onSubmit={handleAIInputSubmit}
-          placeholder="Ask Reefer Guru ..."
+          placeholder="Ask Reefer Guru..."
           loading={isSending}
         />
         
-        <div className="text-center mt-1">
-             <p className="text-[10px] text-gray-400 dark:text-gray-600">
+        <div className="text-center mt-2">
+             <p className="text-[10px] text-gray-400 dark:text-gray-600 font-medium">
                Carrier Transicold Assistant. Always check official manuals.
              </p>
         </div>
