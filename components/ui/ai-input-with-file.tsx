@@ -2,7 +2,6 @@
 
 import { CornerRightUp, FileUp, Paperclip, X, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { Textarea } from "./textarea";
 import { cn } from "../../lib/utils";
 import { useFileInput } from "../hooks/use-file-input";
 import { useAutoResizeTextarea } from "../hooks/use-auto-resize-textarea";
@@ -43,7 +42,7 @@ interface AIInputWithFileProps {
 export function AIInputWithFile({
   id = "ai-input-with-file",
   placeholder = "File Upload and Chat!",
-  minHeight = 60,
+  minHeight = 64,
   maxHeight = 200,
   accept = "image/*",
   maxFileSize = 5,
@@ -78,12 +77,12 @@ export function AIInputWithFile({
         <div className="relative">
           <div
             className={cn(
-              "absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-7 sm:h-8 w-7 sm:w-8 rounded-lg bg-black/5 dark:bg-white/5 hover:cursor-pointer transition-opacity",
+              "absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full bg-black/5 dark:bg-white/5 hover:cursor-pointer transition-opacity z-10",
               loading ? "opacity-50 cursor-not-allowed" : "hover:bg-black/10 dark:hover:bg-white/10"
             )}
             onClick={() => !loading && fileInputRef.current?.click()}
           >
-            <Paperclip className="w-3.5 sm:w-4 h-3.5 sm:h-4 transition-opacity transform scale-x-[-1] rotate-45 dark:text-white" />
+            <Paperclip className="w-4 h-4 transition-opacity transform scale-x-[-1] rotate-45 dark:text-white" />
           </div>
 
           <input
@@ -95,15 +94,18 @@ export function AIInputWithFile({
             disabled={loading}
           />
 
-          <Textarea
+          <textarea
             id={id}
             placeholder={placeholder}
             disabled={loading}
             className={cn(
-              "bg-black/5 dark:bg-white/5 w-full rounded-2xl sm:rounded-3xl pl-10 sm:pl-12 pr-12 sm:pr-16",
+              "block w-full bg-black/5 dark:bg-white/5",
+              "rounded-[32px]", // Pill shape for all devices
+              "pl-12 sm:pl-14 pr-12 sm:pr-16",
               "placeholder:text-black/70 dark:placeholder:text-white/70",
-              "border-none ring-black/30 dark:ring-white/30",
-              "text-black dark:text-white text-wrap py-[18px]",
+              "border-none focus:ring-0 focus:outline-none", // Remove default borders/rings
+              "text-black dark:text-white text-wrap",
+              "py-[20px]", // 64px height - 24px text = 40px padding -> 20px top/bottom
               "text-base leading-6",
               "max-h-[200px] overflow-y-auto resize-none",
               loading && "opacity-70",
@@ -127,17 +129,17 @@ export function AIInputWithFile({
             onClick={handleSubmit}
             disabled={loading || (!inputValue.trim() && !selectedFile)}
             className={cn(
-              "absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 rounded-xl bg-black/5 dark:bg-white/5 py-1 px-1 transition-all",
+              "absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/5 dark:bg-white/5 p-2 transition-all z-10",
               (loading || (!inputValue.trim() && !selectedFile)) ? "opacity-50 cursor-not-allowed" : "hover:bg-reefer-blue hover:text-white"
             )}
             type="button"
           >
             {loading ? (
-              <Loader2 className="w-3.5 sm:w-4 h-3.5 sm:h-4 animate-spin dark:text-white" />
+              <Loader2 className="w-4 h-4 animate-spin dark:text-white" />
             ) : (
               <CornerRightUp
                 className={cn(
-                  "w-3.5 sm:w-4 h-3.5 sm:h-4 transition-opacity dark:text-white",
+                  "w-4 h-4 transition-opacity dark:text-white",
                   (inputValue || selectedFile) ? "opacity-100" : "opacity-30"
                 )}
               />
