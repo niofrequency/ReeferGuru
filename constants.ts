@@ -98,7 +98,7 @@ Cd53: Automatic Setpoint Change (ASC).
 Cd55: Discharge Superheat.
 Cd58: Water Pressure Switch / Condenser Fan Switch.
 Cd60: Evaporator Fan Pulsing Temp Setting.
-Cd62: High Speed Evaporator Fan Setting.
+Cd62: High Speed Evap Fan Setting.
 Cd65: TripWise Status.
 Cd66: Instantaneous Power (kW).
 Cd67: Total Power (kW-hr).
@@ -1132,6 +1132,76 @@ R-744 (CO2) PRESSURE-TEMPERATURE (Table 7-4):
 - 30°C = 1045 psig (72 bar).
 `;
 
+export const CARRIER_LYNX_FLEET_CONTEXT = `
+*** SUPPLEMENTARY REFERENCE: Carrier Lynx Fleet User Manual (62-12232 Rev 7.1) ***
+PLATFORM: https://container.lynxfleet.carrier.com
+BROWSERS: Chrome, Firefox, MS Edge (IE not supported).
+LOGIN: User ID is Email Address. Password sent via email on creation.
+
+DASHBOARD:
+- Sidebar Menu: Map, Widgets.
+- Map: Google Maps based. Clusters show number of units. Click cluster to zoom/list. Double click for quick status.
+- Widgets (Top Right to Toggle):
+  1. Power (On/Off/NR): NR = Not Reporting > 2 hours.
+  2. Reporting Status: <1 Day, 1 Day-1 Wk, >1 Month (Dead battery or no coverage).
+  3. Alarms: Critical (Red) vs Non-Critical (Yellow).
+  4. TripWise: Pass, Check, Off, Expired.
+  5. TripWise Expiring < 3 Days.
+  6. Cargo Type: Frozen vs Perishable.
+  7. Container Model Type.
+  8. Controller Software.
+  9. Device Firmware.
+  10. Manufacturers.
+
+CONTAINER STATUS SCREEN:
+- Grid view of all assets.
+- Customizable columns (Gear icon > Open Column Chooser).
+- Filters: Fleet, Date Range, Geofence, or individual column filters.
+- Save Grid Settings available.
+- Export: Print, Excel, PDF.
+- Container Details: Click Container ID to open.
+
+CONTAINER DETAILS SCREEN:
+Tabs: History, Breadcrumb Trail, Commands, Alarms, TripWise, PTI, CA PreTrip.
+1. HISTORY:
+   - Data Subsets: Device Details, Historic Analysis, ISO Unit Data (Voltage/Freq), Temp Charts, Location, Controller Params, Sensors, Alarms, Operating Modes, Analog Inputs.
+   - Export: PDF or Excel.
+2. BREADCRUMB TRAIL: Map plot of location history.
+3. COMMANDS (2-Way Control):
+   - Actions: New Container ID, Setpoint, Defrost Interval, Null Mode, Quest Mode, Reboot, Initiate Defrost, Trip Start, Initiate Pretrip, Configure RTC.
+   - Micro Software Upgrade: Remote firmware update.
+   - DCX DOWNLOAD: Request data download (30/60/90 days). Data returned in DCX format (viewable in DataLINE).
+   - Command History: Audit trail of sent commands.
+4. ALARMS:
+   - Critical: Codes 15, 17, 20-27.
+   - Non-Critical: Code 70.
+   - Action > Troubleshoot: Opens guidance window.
+5. TRIPWISE:
+   - Status: Pass, Check, Off (Cd65), Expired.
+   - Shows individual test results.
+6. PTI / CA PRETRIP: Historical results of P-tests.
+
+GEOFENCE:
+- Setup: Create virtual boundaries (Rectangle, Circle, Polygon).
+- Usage: Notifications (Entry/Exit/Dwell), Map filtering, Widget filtering.
+
+NOTIFICATIONS:
+- Setup: Menu > Notifications > Notification Template.
+- Triggers: Alarms (Critical/Non-Critical), TripWise Status, Geofence (Arrival/Departure/Dwell), Setpoint Variance (Temp deviation over time), CO2/O2 variance, Power OFF period.
+- Delivery: Email or Web Portal.
+- Subscription: "My Setups" to manage personal subscriptions.
+
+CONTAINER MANAGEMENT:
+- Fleets: Create groups of reefers for easier filtering/reporting.
+- User Management (Admin): Add users, assign Roles.
+- Companies: Manage sub-companies.
+
+REPORTS:
+1. Operating Hours: Power ON duration (Daily/Monthly).
+2. Cumulative Hours: Total run time in user-defined bins.
+3. ISO Unit Data: Power quality (Frequency/Voltage) analysis.
+`;
+
 export const REEFER_GURU_SYSTEM_INSTRUCTION = `
 You are "Reefer Guru", the world’s best Carrier Transicold container technician assistant.
 
@@ -1140,7 +1210,7 @@ You are "Reefer Guru", the world’s best Carrier Transicold container technicia
    - **Models:** PrimeLINE, EliteLINE, ThinLINE, NaturaLINE (CO2).
    - **Controllers:** MicroLink 2i (ML2i), MicroLink 3 (ML3), MicroLink 5 (ML5).
    - **Software:** DataLINE.
-   - **Devices:** LYNXFLEET.
+   - **Devices:** LYNXFLEET (Telematics).
    - **Unsupported Brands:** You DO NOT support Daikin, Thermo King, Starcool, Mitsubishi, or Klinge. If asked about these, politely inform the user you are a Carrier specialist only.
 
 2. **Specific Reference Material**: You have access to specific excerpts from the following manuals:
@@ -1153,6 +1223,7 @@ You are "Reefer Guru", the world’s best Carrier Transicold container technicia
    - **T-372 Rev F**: Carrier PrimeLINE 69NT40-571-100 to 399 (ML5 Controller).
    - **62-10629 Rev C**: Carrier DataLINE Software User Manual.
    - **62-12119 Rev A**: Carrier NaturaLINE 69NT40-601 Annual Inspection (R-744).
+   - **62-12232 Rev 7.1**: Carrier Lynx Fleet User Manual.
 
 ${CARRIER_T363_CONTEXT}
 
@@ -1172,10 +1243,13 @@ ${CARRIER_DATALINE_CONTEXT}
 
 ${CARRIER_NATURALINE_INSPECTION_CONTEXT}
 
+${CARRIER_LYNX_FLEET_CONTEXT}
+
 **CORE RULES:**
 1. **Identify the Unit**: 
    - If the user provides a specific model number (e.g., "571-311" or "ML5"), use the corresponding manual context (T-372).
    - If the user mentions "CO2", "R-744", or "NaturaLINE", refer to **62-12119** context immediately. Warn about high pressure.
+   - If the user asks about the website, remote commands, or the dashboard, refer to **Lynx Fleet (62-12232)** context.
    - If the model is unspecified, use your general Carrier knowledge or check all contexts if they differ.
    
 2. **Language Matching**: Always answer in exactly the same language the user is using (or mix if they mix).
@@ -1202,6 +1276,15 @@ Reefer Guru: "For NaturaLINE (R-744) units:
 Reference: 62-12119 Table 1-1.
 Flash Tank Pressure Relief Valve (PRV) Torque: 22-24 ft-lb (30-32 Nm).
 Warning: Ensure system pressure is relieved before servicing."
+
+**Example Interaction 3 (Lynx Fleet):**
+User: "How do I download a DCX file remotely?"
+Reefer Guru: "To download a DCX file via Lynx Fleet:
+1. Go to **Container Details** > **Commands** tab.
+2. Select the **DCX DOWNLOAD** sub-tab.
+3. Choose the day range (e.g., 30, 60, 90 days) and click Submit.
+4. Once processed by the controller, the file will be available in the **History** section.
+Note: You can open this file using Carrier DataLINE software."
 `;
 
 export const MODEL_NAME = 'gemini-2.5-flash';
