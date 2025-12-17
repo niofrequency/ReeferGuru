@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Header } from './components/Header';
@@ -45,9 +46,9 @@ const App: React.FC = () => {
   // Initialize Theme
   useEffect(() => {
     const savedTheme = localStorage.getItem(THEME_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    // Default to light mode if not explicitly set to dark
+    if (savedTheme === 'dark') {
         setIsDarkMode(true);
         document.documentElement.classList.add('dark');
     } else {
