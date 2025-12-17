@@ -1,6 +1,7 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Message } from '../types';
-import { Bot, User, AlertTriangle } from 'lucide-react';
+import { Bot, User, AlertTriangle, Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 interface MessageBubbleProps {
@@ -10,6 +11,17 @@ interface MessageBubbleProps {
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   const isUser = message.role === 'user';
   const isError = message.isError;
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(message.text);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text:', err);
+    }
+  };
 
   return (
     <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'} mb-6 group`}>
@@ -80,9 +92,24 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
              </ReactMarkdown>
           </div>
           
-          {/* Timestamp */}
-          <div className={`text-[10px] mt-1 opacity-70 text-right ${isUser ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
-            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          {/* Footer: Copy Button & Timestamp */}
+          <div className="flex items-center justify-between mt-2 min-h-[20px]">
+            {!isUser && !isError ? (
+                <button
+                    onClick={handleCopy}
+                    className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                    title="Copy to clipboard"
+                    aria-label="Copy to clipboard"
+                >
+                    {isCopied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
+                </button>
+            ) : (
+                <div /> /* Spacer */
+            )}
+            
+            <div className={`text-[10px] opacity-70 ${isUser ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
+              {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </div>
           </div>
         </div>
       </div>
