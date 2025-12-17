@@ -236,10 +236,11 @@ const App: React.FC = () => {
 
     } catch (error) {
       console.error("Error sending message:", error);
+      
       const errorMessage: Message = {
         id: uuidv4(),
         role: 'model',
-        text: "I'm having trouble accessing the Carrier manual database right now. Please check your connection and try again.",
+        text: "System is experiencing high traffic or connection issues. Please wait a moment and try again.",
         timestamp: new Date(),
         isError: true
       };
@@ -343,3 +344,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
