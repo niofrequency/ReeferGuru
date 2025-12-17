@@ -1,8 +1,9 @@
-import { GoogleGenAI, GenerateContentResponse, ChatSession, Content } from "@google/genai";
+
+import { GoogleGenAI, GenerateContentResponse, Chat, Content } from "@google/genai";
 import { REEFER_GURU_SYSTEM_INSTRUCTION, MODEL_NAME } from '../constants';
 import { Message } from '../types';
 
-let chatSession: ChatSession | null = null;
+let chatSession: Chat | null = null;
 let genAI: GoogleGenAI | null = null;
 
 const getGenAI = (): GoogleGenAI => {
@@ -47,7 +48,16 @@ export const initializeChat = async (historyMessages: Message[] = []) => {
     const ai = getGenAI();
     
     // Filter out error messages or system initialization messages that shouldn't be in history context
-    const validHistory = historyMessages.filter(m => !m.isError && m.id !== 'init-1');
+    let validHistory = historyMessages.filter(m => !m.isError && m.id !== 'init-1');
+
+    // FIX: Gemini API requires strict alternation of User -> Model roles.
+    // If the last message in history is from the 'user' (which happens if the last request failed/errored),
+    // the API will reject the next 'user' message as an invalid turn (User -> User).
+    // We must remove the dangling user message from the history context to restore balance.
+    if (validHistory.length > 0 && validHistory[validHistory.length - 1].role === 'user') {
+        validHistory = validHistory.slice(0, -1);
+    }
+
     const formattedHistory = mapMessagesToHistory(validHistory);
 
     chatSession = ai.chats.create({
@@ -65,6 +75,43 @@ export const initializeChat = async (historyMessages: Message[] = []) => {
   }
 };
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Wrapper to handle Rate Limits (429) and Server Overload (503)
+const sendMessageWithRetry = async (
+  session: Chat, 
+  payload: any, 
+  retries = 3, 
+  attempt = 1
+): Promise<GenerateContentResponse> => {
+  try {
+    return await session.sendMessage(payload);
+  } catch (error: any) {
+    // Check for common temporary failure codes
+    const msg = error.message || '';
+    const status = error.status || error.response?.status;
+
+    // 429: Too Many Requests (Quota Exceeded)
+    // 503: Service Unavailable (Overloaded)
+    const isRetryable = 
+        msg.includes('429') || status === 429 || 
+        msg.includes('503') || status === 503 ||
+        msg.includes('Quota exceeded') ||
+        msg.includes('Resource has been exhausted');
+
+    if (isRetryable && attempt <= retries) {
+      // Exponential backoff: 2s, 4s, 8s
+      const delay = Math.pow(2, attempt) * 1000; 
+      console.warn(`Gemini API Busy (Attempt ${attempt}/${retries}). Retrying in ${delay}ms...`);
+      
+      await sleep(delay);
+      return sendMessageWithRetry(session, payload, retries, attempt + 1);
+    }
+    
+    throw error;
+  }
+};
+
 export const sendMessageToGemini = async (
   text: string, 
   imageBase64?: string, 
@@ -79,10 +126,10 @@ export const sendMessageToGemini = async (
   }
 
   try {
-    let result: GenerateContentResponse;
+    let payload;
 
     if (imageBase64 && mimeType) {
-        result = await chatSession.sendMessage({
+      payload = {
             message: {
                 role: 'user',
                 parts: [
@@ -95,13 +142,14 @@ export const sendMessageToGemini = async (
                     }
                 ]
             }
-        });
-
+        };
     } else {
-      result = await chatSession.sendMessage({ message: text });
+      payload = { message: text };
     }
 
+    const result = await sendMessageWithRetry(chatSession, payload);
     return result.text || "No response received from the manual database.";
+    
   } catch (error) {
     console.error("Gemini API Error:", error);
     throw error;
