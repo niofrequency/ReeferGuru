@@ -55,10 +55,7 @@ The knowledge base includes the following official Carrier Transicold manuals:
 ## 🖼️ Reefer Guru Dashboard
 
 Visual examples of Reefer Guru in action:
-
-
-
-
+![Reefer Guru Dashboard](<images/Dashboard.png>)
 
 ---
 
