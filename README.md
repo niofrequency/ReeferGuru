@@ -27,11 +27,11 @@ Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically 
 The knowledge base includes the following official Carrier Transicold manuals:
 
 
-OptimaLINE:
+OptimaLINE (https://www.carrier.com/container-refrigeration/en/worldwide/products/Container-Units/optimaline/index.html):
 - **T-383 Rev C**: Carrier OptimaLINE 69NT40-701-001 to 099
 - **T-384 Rev A**: Carrier OptimaLINE 69NT40-701-100 to 199 (R-1234yf)
 
-ThinLINE:
+ThinLINE (https://www.carrier.com/container-refrigeration/en/worldwide/products/Container-Units/thinline/): 
 - **T-363 Rev E**: Carrier ThinLINE 69NT40-541-500 to 599
 - **T-318 Rev D**: Carrier ThinLINE 69NT40-541-300 to 499
 - **T-285PL Rev M**: Carrier ThinLINE 69NT40-511-300 to 399 (Service Parts List)
@@ -40,7 +40,7 @@ ThinLINE:
 - **T-252 Rev 05**: Carrier ThinLINE 69NT20-284, 69NT40-461, 69NT40-464
 - **T-246 Rev 10**: Carrier ThinLINE 69NT20-274, 69NT40-441/444/454
 
-EliteLINE:
+EliteLINE (https://www.carrier.com/container-refrigeration/en/worldwide/products/Container-Units/eliteline/): 
 - **T-320 Rev B**: Carrier EliteLINE 69NT40-551-001 to 199
 - **T-292 Rev C**: Carrier EliteLINE 69NT40-531-001 to 199 (Micro-Link 2i)
 - **T-309 Rev A**: Carrier EliteLINE 69NT20-531-300 Streamline Scroll (Micro-Link 2i)
@@ -48,16 +48,18 @@ EliteLINE:
 - **T-327 Rev C**: Carrier EliteLINE 69NT40-551-400 to 425 (Micro-Link 3)
 - **T-342 Rev A**: Carrier eAutoFresh Technical Supplement (EliteLINE/PrimeLINE)
 
-PrimeLINE:
+PrimeLINE (https://www.carrier.com/container-refrigeration/en/worldwide/products/Container-Units/primeline/):
 - **T-340 Rev G**: Carrier PrimeLINE 69NT40-561-001 to 199
 - **T-359 Rev C**: Carrier PrimeLINE 69NT40-561-019 (Evergreen)
 - **T-362 Rev J**: Carrier PrimeLINE 69NT40-561-200/500, 69NT40-565 (PrimeLINE ONE)
 - **T-365 Rev D**: Carrier PrimeLINE 69NT40-561-300 to 399 (Edge/XtendFRESH)
 - **T-372 Rev F**: Carrier PrimeLINE 69NT40-571-100 to 399 (ML5 Controller)
 
+NaturaLINE (https://www.carrier.com/container-refrigeration/en/worldwide/products/Container-Units/naturaline/):
+- **62-12119 Rev A**: Carrier NaturaLINE 69NT40-601 Annual Inspection (R-744)
+
 Software:
 - **62-10629 Rev C**: Carrier DataLINE Software User Manual
-- **62-12119 Rev A**: Carrier NaturaLINE 69NT40-601 Annual Inspection (R-744)
 - **62-12232 Rev 7.1**: Carrier Lynx Fleet User Manual
 
 ---
