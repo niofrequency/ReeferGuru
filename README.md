@@ -52,21 +52,13 @@ The knowledge base includes the following official Carrier Transicold manuals:
 
 ---
 
-## 🖼️ Carrier Transicold Reefer Units
+## 🖼️ Reefer Guru Dashboard
 
-Visual examples of refrigerated containers equipped with Carrier Transicold refrigeration systems:
+Visual examples of Reefer Guru in action:
 
-**PrimeLINE** (High-efficiency, widely used model)  
-![Carrier PrimeLINE unit](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
 
-**ThinLINE** (Compact and reliable classic)  
-![Carrier ThinLINE unit](https://www.ravagroupcontainers.com/wp-content/uploads/2020/03/161027_85638-carrier-thin-line-1920x1440.jpg)
 
-**OptimaLINE** (Advanced next-generation unit with R-1234yf support)  
-![Carrier OptimaLINE unit](https://images.carriercms.com/image/upload/w_600,h_400,c_fill,g_center,q_auto,f_auto/v1716229050/carrier/container-refrigeration/products/container-units/carrier-hero-optimaline-unit-ship-2000x550.jpg)
 
-**NaturaLINE** (Natural refrigerant CO2 system)  
-![Carrier NaturaLINE unit](https://mma.prnewswire.com/media/733876/Carrier_Transicold_NaturaLINE_unit.jpg?p=facebook)
 
 ---
 
