@@ -70,26 +70,20 @@ Visual examples of refrigerated containers equipped with Carrier Transicold refr
 ├── services/ # Gemini API integration and retry logic
 ├── constants.ts # System instructions and AI persona configuration
 └── types.ts # Global TypeScript interfaces
-
-
-
+```
 
 ## ⚠️ Safety Disclaimer
-
-**Reefer Guru is a technical assistant and NOT a replacement for official training or the physical service manual.** 
-
+**Reefer Guru is a technical assistant and NOT a replacement for official training or the physical service manual.**
 Technicians must always:
 1. Follow **Lockout/Tagout** procedures before servicing electrical components.
 2. Adhere to **A2L safety protocols** when working with R-1234yf.
 3. Observe **high-pressure warnings** on NaturaLINE (CO2) units.
 4. Verify critical torque values and part numbers against the unit's serial plate.
-
 ---
-
 ## 🛠 Installation
-
 1. Clone the repository.
 2. Ensure your environment variable `API_KEY` is configured with a valid Google Gemini API key.
 3. Run `npm install` followed by `npm start`.
-
 *Developed by Senior Frontend Engineering - Carrier Transicold Specialist*
+
+
