@@ -3,6 +3,8 @@
 # ❄️ Reefer Guru
 ### The Ultimate AI Assistant for Refrigerated Container Technicians
 
+![Reefer Guru Logo](images/Reefer_Guru.png)
+
 Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically engineered for container technicians servicing **Carrier Transicold** refrigeration units. Built on the Google Gemini 2.5 Flash model, it provides instant access to technical specifications, alarm troubleshooting, and safety protocols extracted from official service manuals.
 
 ![Full reefer container with Carrier PrimeLINE unit](https://www.worldcargonews.com/wp-content/uploads/2024/06/ESL-scaled.jpg)
