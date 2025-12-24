@@ -1,7 +1,10 @@
-https://reefer-guru.vercel.app
+<img width="42" height="18" alt="image" src="https://github.com/user-attachments/assets/6a1d3687-ed93-4b40-8012-9e5f56c54d50" />https://reefer-guru.vercel.app
 
 # ❄️ Reefer Guru
 ### The Ultimate AI Assistant for Refrigerated Container Technicians
+
+![Uploading image.png…]()
+
 
 Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically engineered for container technicians servicing **Carrier Transicold** refrigeration units. Built on the Google Gemini 2.5 Flash model, it provides instant access to technical specifications, alarm troubleshooting, and safety protocols extracted from official service manuals.
 
