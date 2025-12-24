@@ -1,0 +1,70 @@
+# ❄️ Reefer Guru
+### The Ultimate AI Assistant for Refrigerated Container Technicians
+
+Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically engineered for container technicians servicing **Carrier Transicold** refrigeration units. Built on the Google Gemini 2.5 Flash model, it provides instant access to technical specifications, alarm troubleshooting, and safety protocols extracted from official service manuals.
+
+---
+
+## 🚀 Core Features
+
+- **Expert Carrier Knowledge**: Deep integration of manuals including T-363, T-318, T-340, T-372, T-383, and the new T-384 Rev A.
+- **Multimodal Diagnostics**: Support for image uploads. Technicians can photograph controller displays, serial plates, or component failures for immediate AI analysis.
+- **R-1234yf & NaturaLINE Safety**: Specialized protocols for mildly flammable refrigerants and high-pressure CO2 systems, including mandatory venting wait times and "hot work" requirements.
+- **Technical Library**: Instant lookup for:
+  - **Alarm Codes**: Detailed causes and corrective actions.
+  - **Function Codes (Cd)**: Descriptions of all Micro-Link 2i, 3, and 5 codes.
+  - **Torque Specs**: Critical values for compressors (06DR, Samsung Scroll), Rotalocks, and pressure components.
+  - **Sensor Data**: Resistance tables for NTC and CPDS sensors.
+- **Persistent Sessions**: Chat history is saved locally, allowing technicians to track ongoing repairs across shifts.
+- **Modern UI/UX**: Responsive, mobile-first design with full Dark Mode support for nighttime yard operations.
+
+---
+
+## 🛠 Technology Stack
+
+- **Frontend**: React 19 with TypeScript.
+- **AI Engine**: Google Gemini 2.5 Flash (via `@google/genai`).
+- **Styling**: Tailwind CSS for high-density information display.
+- **Icons**: Lucide React.
+- **Deployment**: ES6 Module-based structure with Import Maps for optimized loading.
+
+---
+
+## 📦 Project Structure
+
+```text
+├── components/          # React components (Header, Sidebar, MessageBubble, etc.)
+│   ├── ui/              # Reusable UI components (Input, Textarea)
+│   └── hooks/           # Custom React hooks (Auto-resize, File handling)
+├── data/                # High-density knowledge base (The "Manuals")
+│   ├── thinline.ts      # T-363, T-318, T-246, etc.
+│   ├── primeline.ts     # T-340, T-365, T-372, etc.
+│   ├── optimaline.ts    # T-383, T-384 (R-1234yf)
+│   ├── naturaline.ts    # R-744 Inspection specs
+│   └── software.ts      # DataLINE & Lynx Fleet documentation
+├── services/            # Gemini API integration and retry logic
+├── constants.ts         # System instructions and AI persona configuration
+└── types.ts             # Global TypeScript interfaces
+```
+
+---
+
+## ⚠️ Safety Disclaimer
+
+**Reefer Guru is a technical assistant and NOT a replacement for official training or the physical service manual.** 
+
+Technicians must always:
+1. Follow **Lockout/Tagout** procedures before servicing electrical components.
+2. Adhere to **A2L safety protocols** when working with R-1234yf.
+3. Observe **high-pressure warnings** on NaturaLINE (CO2) units.
+4. Verify critical torque values and part numbers against the unit's serial plate.
+
+---
+
+## 🛠 Installation
+
+1. Clone the repository.
+2. Ensure your environment variable `API_KEY` is configured with a valid Google Gemini API key.
+3. Run `npm install` followed by `npm start`.
+
+*Developed by Mark Pigome - Carrier Transicold Specialist*
