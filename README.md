@@ -1,14 +1,9 @@
-<img width="42" height="18" alt="image" src="https://github.com/user-attachments/assets/6a1d3687-ed93-4b40-8012-9e5f56c54d50" />https://reefer-guru.vercel.app
-
 # ❄️ Reefer Guru
 ### The Ultimate AI Assistant for Refrigerated Container Technicians
 
 ![Reefer Guru Logo](<images/Reefer Guru.png>)
 
 Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically engineered for container technicians servicing **Carrier Transicold** refrigeration units. Built on the Google Gemini 2.5 Flash model, it provides instant access to technical specifications, alarm troubleshooting, and safety protocols extracted from official service manuals.
-
-![Full reefer container with Carrier PrimeLINE unit](https://www.worldcargonews.com/wp-content/uploads/2024/06/ESL-scaled.jpg)
-
 
 ---
 
@@ -24,22 +19,50 @@ Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically 
 - **Persistent Sessions**: Chat history is saved locally, allowing technicians to track ongoing repairs across shifts.
 - **Modern UI/UX**: Responsive, mobile-first design with full Dark Mode support for nighttime yard operations.
 
+![Full reefer container with Carrier PrimeLINE unit](https://www.worldcargonews.com/wp-content/uploads/2024/06/ESL-scaled.jpg)
+---
+
+## 📚 Integrated Carrier Transicold Manuals
+
+The knowledge base includes the following official Carrier Transicold manuals:
+
+- **T-383 Rev C**: Carrier OptimaLINE 69NT40-701-001 to 099
+- **T-384 Rev A**: Carrier OptimaLINE 69NT40-701-100 to 199 (R-1234yf)
+- **T-363 Rev E**: Carrier ThinLINE 69NT40-541-500 to 599
+- **T-318 Rev D**: Carrier ThinLINE 69NT40-541-300 to 499
+- **T-285PL Rev M**: Carrier ThinLINE 69NT40-511-300 to 399 (Service Parts List)
+- **T-259 Rev F**: Carrier ThinLINE 69NT40-489
+- **T-257 Rev 03**: Carrier ThinLINE 69NT40-449, 69NT40-459
+- **T-252 Rev 05**: Carrier ThinLINE 69NT20-284, 69NT40-461, 69NT40-464
+- **T-246 Rev 10**: Carrier ThinLINE 69NT20-274, 69NT40-441/444/454
+- **T-320 Rev B**: Carrier EliteLINE 69NT40-551-001 to 199
+- **T-292 Rev C**: Carrier EliteLINE 69NT40-531-001 to 199 (Micro-Link 2i)
+- **T-309 Rev A**: Carrier EliteLINE 69NT20-531-300 Streamline Scroll (Micro-Link 2i)
+- **T-322 Rev A**: Carrier EliteLINE 69NT20-551-300 to 399 Streamline Scroll (Micro-Link 3)
+- **T-327 Rev C**: Carrier EliteLINE 69NT40-551-400 to 425 (Micro-Link 3)
+- **T-342 Rev A**: Carrier eAutoFresh Technical Supplement (EliteLINE/PrimeLINE)
+- **T-340 Rev G**: Carrier PrimeLINE 69NT40-561-001 to 199
+- **T-359 Rev C**: Carrier PrimeLINE 69NT40-561-019 (Evergreen)
+- **T-362 Rev J**: Carrier PrimeLINE 69NT40-561-200/500, 69NT40-565 (PrimeLINE ONE)
+- **T-365 Rev D**: Carrier PrimeLINE 69NT40-561-300 to 399 (Edge/XtendFRESH)
+- **T-372 Rev F**: Carrier PrimeLINE 69NT40-571-100 to 399 (ML5 Controller)
+- **62-10629 Rev C**: Carrier DataLINE Software User Manual
+- **62-12119 Rev A**: Carrier NaturaLINE 69NT40-601 Annual Inspection (R-744)
+- **62-12232 Rev 7.1**: Carrier Lynx Fleet User Manual
+
 ---
 
 ## 🖼️ Carrier Transicold Reefer Units
 
 Visual examples of refrigerated containers equipped with Carrier Transicold refrigeration systems:
 
-**PrimeLINE** (High-efficiency, widely used model)
+**PrimeLINE** (High-efficiency, widely used model)  
 
-**ThinLINE** (Compact and reliable classic)
+**ThinLINE** (Compact and reliable classic)  
 
-**OptimaLINE** (Advanced next-generation unit with R-1234yf support)
+**OptimaLINE** (Advanced next-generation unit with R-1234yf support)  
 
-**NaturaLINE** (Natural refrigerant CO2 system)
-
-
-![Carrier PrimeLINE unit](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
+**NaturaLINE** (Natural refrigerant CO2 system)  
 
 ---
 
@@ -53,6 +76,7 @@ Visual examples of refrigerated containers equipped with Carrier Transicold refr
 ---
 
 ## 📦 Project Structure
+
 ```text
 ├── components/ # React components (Header, Sidebar, MessageBubble, etc.)
 │   ├── ui/ # Reusable UI components (Input, Textarea)
