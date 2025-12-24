@@ -5,9 +5,9 @@ reefer-guru.vercel.app
 
 Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically engineered for container technicians servicing **Carrier Transicold** refrigeration units. Built on the Google Gemini 2.5 Flash model, it provides instant access to technical specifications, alarm troubleshooting, and safety protocols extracted from official service manuals.
 
-![Reefer container with Carrier unit](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
+![Full reefer container with Carrier PrimeLINE unit](https://www.worldcargonews.com/wp-content/uploads/2024/06/ESL-scaled.jpg)
 
-![Full view of reefer container with Carrier PrimeLINE](https://perishablenews.com/wp-content/uploads/2025/05/a-r1-9-1.jpg)
+![Carrier Transicold PrimeLINE refrigeration unit close-up](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
 
 ---
 
@@ -25,41 +25,25 @@ Reefer Guru is a high-performance, expert-level AI diagnostic tool specifically 
 
 ---
 
-## 🖼️ Reefer Containers by Major Manufacturers
+## 🖼️ Carrier Transicold Reefer Units
 
-Here are examples of refrigerated (reefer) containers and their refrigeration units from leading manufacturers:
+Visual examples of refrigerated containers equipped with Carrier Transicold refrigeration systems:
 
-### Carrier Transicold Models
+**PrimeLINE** (High-efficiency, widely used model)
 
-**PrimeLINE** (Popular for high-efficiency performance)
-
-![Carrier PrimeLINE unit on container](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
+![Carrier PrimeLINE unit](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
 
 **ThinLINE** (Compact and reliable classic)
 
-![Carrier ThinLINE refrigeration unit](https://www.ravagroupcontainers.com/wp-content/uploads/2020/03/161027_85638-carrier-thin-line-1920x1440.jpg)
+![Carrier ThinLINE unit](https://www.ravagroupcontainers.com/wp-content/uploads/2020/03/161027_85638-carrier-thin-line-1920x1440.jpg)
 
-**OptimaLINE** (Advanced next-gen unit with R-1234yf support)
+**OptimaLINE** (Advanced next-generation unit with R-1234yf support)
 
 ![Carrier OptimaLINE unit](https://images.carriercms.com/image/upload/w_600,h_400,c_fill,g_center,q_auto,f_auto/v1716229050/carrier/container-refrigeration/products/container-units/carrier-hero-optimaline-unit-ship-2000x550.jpg)
 
 **NaturaLINE** (Natural refrigerant CO2 system)
 
 ![Carrier NaturaLINE unit](https://mma.prnewswire.com/media/733876/Carrier_Transicold_NaturaLINE_unit.jpg?p=facebook)
-
-### Other Major Manufacturers
-
-**Thermo King Magnum Plus**
-
-![Thermo King Magnum Plus unit](https://www.thermoking-globalsolutions.com/wp-content/uploads/2024/02/TK-MagnumPlus_Container_Front_Studio-right-15dg_dark.jpg)
-
-**Daikin Reefer Unit**
-
-![Daikin reefer container](https://seacoglobal.com/wp-content/uploads/2023/07/20-Reefer-Image-Whole-Container-scaled.jpg)
-
-**Star Cool (by Maersk Container Industry)**
-
-![Star Cool reefer unit](https://img.foodlogistics.com/files/base/acbm/scn/image/2024/09/Maersk_Star_Cool_1.1.66d7051003b77.png?auto=format%2Ccompress&fit=max&q=70&w=1200)
 
 ---
 
@@ -86,3 +70,26 @@ Here are examples of refrigerated (reefer) containers and their refrigeration un
 ├── services/ # Gemini API integration and retry logic
 ├── constants.ts # System instructions and AI persona configuration
 └── types.ts # Global TypeScript interfaces
+
+
+
+
+## ⚠️ Safety Disclaimer
+
+**Reefer Guru is a technical assistant and NOT a replacement for official training or the physical service manual.** 
+
+Technicians must always:
+1. Follow **Lockout/Tagout** procedures before servicing electrical components.
+2. Adhere to **A2L safety protocols** when working with R-1234yf.
+3. Observe **high-pressure warnings** on NaturaLINE (CO2) units.
+4. Verify critical torque values and part numbers against the unit's serial plate.
+
+---
+
+## 🛠 Installation
+
+1. Clone the repository.
+2. Ensure your environment variable `API_KEY` is configured with a valid Google Gemini API key.
+3. Run `npm install` followed by `npm start`.
+
+*Developed by Senior Frontend Engineering - Carrier Transicold Specialist*
