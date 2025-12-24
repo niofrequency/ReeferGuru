@@ -1,4 +1,4 @@
-reefer-guru.vercel.app
+https://reefer-guru.vercel.app
 
 # ❄️ Reefer Guru
 ### The Ultimate AI Assistant for Refrigerated Container Technicians
@@ -30,14 +30,14 @@ Visual examples of refrigerated containers equipped with Carrier Transicold refr
 
 **PrimeLINE** (High-efficiency, widely used model)
 
-![Carrier PrimeLINE unit](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
-
 **ThinLINE** (Compact and reliable classic)
 
 **OptimaLINE** (Advanced next-generation unit with R-1234yf support)
 
 **NaturaLINE** (Natural refrigerant CO2 system)
 
+
+![Carrier PrimeLINE unit](https://refindustry.com/upload/iblock/8f8/8f808ac25154025f4de08f53afec89a5.jpg)
 
 ---
 
@@ -78,6 +78,7 @@ Technicians must always:
 1. Clone the repository.
 2. Ensure your environment variable `API_KEY` is configured with a valid Google Gemini API key.
 3. Run `npm install` followed by `npm start`.
-*Developed by Senior Frontend Engineering - Carrier Transicold Specialist*
+
+*Developed by Mark Antonio Pigome*
 
 
