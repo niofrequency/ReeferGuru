@@ -112,6 +112,8 @@ Technicians must always:
 2. Ensure your environment variable `API_KEY` is configured with a valid Google Gemini API key.
 3. Run `npm install` followed by `npm start`.
 
+---
+
 *Developed by Mark Antonio Pigome*
 
-
+---
