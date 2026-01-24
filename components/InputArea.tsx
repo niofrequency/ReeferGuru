@@ -46,11 +46,6 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
           className="[&_textarea::-webkit-scrollbar]:hidden [&_textarea]:[scrollbar-width:none] [&_textarea]:[-ms-overflow-style:none]"
         />
         
-        <div className="text-center mt-2">
-             <p className="text-[10px] text-gray-400 dark:text-gray-600 font-medium">
-               Carrier Transicold Assistant. Always check official manuals.
-             </p>
-        </div>
       </div>
     </div>
   );
