@@ -40,7 +40,11 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    <div className="absolute bottom-0 left-0 w-full z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent dark:from-gray-950 dark:via-gray-950/95 dark:to-transparent transition-colors duration-300">
+    // UPDATED LAYOUT FIX FOR iOS:
+    // 1. Removed "absolute bottom-0"
+    // 2. Added "flex-shrink-0" to prevent squashing
+    // 3. Changed bg to solid colors with a top border
+    <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
           onSubmit={handleAIInputSubmit}
