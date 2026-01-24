@@ -35,15 +35,14 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    // FIX: Changed "dark:from-gray-950" to "dark:from-gray-900" to match App background
-    // This makes the "black bar" disappear and blend seamlessly
-    <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent dark:from-gray-900 dark:via-gray-900/95 dark:to-transparent transition-colors duration-300">
+    // FIX: Changed "dark:from-gray-900" -> "dark:from-gray-950"
+    // Now the gradient matches the app background (gray-950) perfectly.
+    <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent dark:from-gray-950 dark:via-gray-950/95 dark:to-transparent transition-colors duration-300">
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
           onSubmit={handleAIInputSubmit}
           placeholder="Ask Reefer Guru..."
           loading={isSending}
-          // Force hidden scrollbar
           className="[&_textarea::-webkit-scrollbar]:hidden [&_textarea]:[scrollbar-width:none] [&_textarea]:[-ms-overflow-style:none]"
         />
         
