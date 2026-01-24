@@ -328,7 +328,7 @@ const App: React.FC = () => {
                             <Loader2 size={16} className="text-reefer-blue animate-spin" />
                         </div>
                       </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">Consulting Carrier manuals...</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium"> . . . </span>
                    </div>
                </div>
             )}
