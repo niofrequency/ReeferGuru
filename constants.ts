@@ -103,4 +103,4 @@ Action:
 3. Check EEV operation in Manual Check."
 `;
 
-export const MODEL_NAME = 'gemini-2.5-flash';
+export const MODEL_NAME = 'grok-3';
