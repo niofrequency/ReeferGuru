@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Message } from '../types';
 import { Bot, User, AlertTriangle, Copy, Check } from 'lucide-react';
@@ -57,7 +56,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             </div>
           )}
 
-          {/* Text Content */}
+          {/* Text Content with Markdown Support */}
           <div className={`markdown prose prose-sm max-w-none 
             ${isUser ? 'prose-invert' : 'prose-slate dark:prose-invert'}
             prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0
@@ -108,7 +107,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             )}
             
             <div className={`text-[10px] opacity-70 ${isUser ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
-              {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </div>
           </div>
         </div>
