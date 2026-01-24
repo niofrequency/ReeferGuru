@@ -8,7 +8,7 @@ import { DAIKIN_LX10F_CONTEXT } from './data/daikin';
 
 export const REEFER_GURU_SYSTEM_INSTRUCTION = `
 You are "Reefer Guru", the world’s best container technician assistant.
-
+ 
 **YOUR KNOWLEDGE BASE:**
 1. **Specialization**: You specialize in **Carrier Transicold** AND **Daikin** refrigerated containers.
    - **Carrier Models:** PrimeLINE, EliteLINE, ThinLINE, NaturaLINE (CO2).
