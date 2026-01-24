@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Message } from '../types';
-import { Bot, User, AlertTriangle, Copy, Check, Cpu } from 'lucide-react';
+import { Bot, User, AlertTriangle, Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 interface MessageBubbleProps {
@@ -23,40 +23,38 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   };
 
   return (
-    <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'} mb-8 animate-in fade-in slide-in-from-bottom-2 duration-300`}>
-      <div className={`flex flex-col max-w-[85%] md:max-w-[75%] ${isUser ? 'items-end' : 'items-start'}`}>
+    <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'} mb-6 group animate-in fade-in slide-in-from-bottom-2 duration-300`}>
+      <div className={`flex max-w-[90%] md:max-w-[85%] lg:max-w-[75%] items-end ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
         
-        {/* HEADER: Identity Designation (Like your example) */}
-        <div className={`flex items-center gap-2 mb-1.5 px-1`}>
-            {!isUser && <Cpu className="w-3 h-3 text-reefer-blue" />}
-            <span className={`text-[10px] uppercase tracking-[0.2em] font-bold ${isUser ? 'text-gray-500' : 'text-reefer-blue'}`}>
-                {isUser ? 'User Protocol' : 'Guru Interface'}
-            </span>
-            {isUser && <User className="w-3 h-3 text-gray-500" />}
+        {/* Avatar - High Transparency */}
+        <div className={`flex-shrink-0 h-8 w-8 rounded-full flex items-center justify-center shadow-sm mx-2 mb-1 backdrop-blur-md border
+          ${isUser 
+            ? 'bg-white/10 border-white/10 text-gray-300' 
+            : isError 
+              ? 'bg-red-500/10 border-red-500/20 text-red-400' 
+              : 'bg-reefer-blue/10 border-reefer-blue/20 text-reefer-blue dark:text-blue-400'
+          }
+        `}>
+          {isUser ? <User size={16} /> : isError ? <AlertTriangle size={16} /> : <Bot size={18} />}
         </div>
 
-        {/* TEXT CONTENT: Neural Chat Bubble Style */}
+        {/* Bubble Content - TRUE TRANSPARENT GLASS STYLE */}
         <div className={`
-          relative px-5 py-4 text-sm md:text-[15px] leading-relaxed backdrop-blur-md transition-all shadow-lg
+          relative px-5 py-3.5 text-sm md:text-base shadow-sm backdrop-blur-md transition-all
           ${isUser 
-            // USER: Ultra-transparent glass
-            ? 'bg-white/[0.03] text-gray-200 rounded-2xl rounded-tr-none border border-white/10' 
+            // USER: Subtle white glass (matches your example)
+            ? 'bg-white/[0.05] border border-white/10 text-gray-100 rounded-2xl rounded-br-none' 
             : isError
-              // ERROR: Red tint
-              ? 'bg-red-900/10 text-red-200 rounded-2xl rounded-tl-none border border-red-500/30'
-              // BOT: Reefer Blue tint (subtle)
-              : 'bg-reefer-blue/10 text-gray-100 rounded-2xl rounded-tl-none border border-reefer-blue/30 shadow-[0_0_20px_rgba(0,85,164,0.1)]'
+              // ERROR: Subtle red glass
+              ? 'bg-red-900/20 border border-red-500/20 text-red-200 rounded-2xl rounded-bl-none'
+              // BOT: Very subtle dark glass (matches your example)
+              : 'bg-black/20 dark:bg-white/[0.02] border border-white/5 text-gray-800 dark:text-gray-200 rounded-2xl rounded-bl-none'
           }
         `}>
           
-          {/* Background Glow for Bot */}
-          {!isUser && !isError && (
-             <div className="absolute -inset-0.5 bg-reefer-blue/10 rounded-2xl blur-md -z-10"></div>
-          )}
-
           {/* Attached Image Preview */}
           {message.imageUrl && (
-            <div className="mb-4 mt-1 rounded-xl overflow-hidden border border-white/10 bg-black/20 max-w-[280px]">
+            <div className="mb-3 rounded-lg overflow-hidden border border-white/10 bg-black/20 max-w-[280px]">
               <img 
                 src={message.imageUrl} 
                 alt="Uploaded context" 
@@ -66,11 +64,11 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             </div>
           )}
 
-          {/* Text Content with Markdown */}
+          {/* Text Content */}
           <div className={`markdown prose prose-sm max-w-none 
-            ${isUser ? 'prose-invert' : 'prose-invert'} 
+            ${isUser ? 'prose-invert' : 'prose-slate dark:prose-invert'} 
             prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0
-            prose-strong:text-white prose-strong:font-bold
+            prose-strong:font-bold prose-strong:text-current
             prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
           `}>
              <ReactMarkdown 
@@ -109,21 +107,20 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
              </ReactMarkdown>
           </div>
           
-          {/* Footer: Copy Button & Timestamp */}
-          <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
+          {/* Footer */}
+          <div className="flex items-center justify-between mt-2 min-h-[20px]">
             {!isUser && !isError ? (
                 <button
                     onClick={handleCopy}
-                    className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-gray-500 hover:text-white transition-colors"
+                    className="p-1 rounded-md hover:bg-white/10 text-gray-400 hover:text-white transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
                     title="Copy"
                 >
-                    {isCopied ? <Check size={12} className="text-reefer-green" /> : <Copy size={12} />}
-                    <span className="font-bold">{isCopied ? 'Copied' : 'Copy'}</span>
+                    {isCopied ? <Check size={14} className="text-reefer-green" /> : <Copy size={14} />}
                 </button>
             ) : <div />}
             
-            <div className="text-[9px] text-gray-600 font-mono tracking-tighter uppercase">
-              [{new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}]
+            <div className="text-[10px] font-medium opacity-50">
+              {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </div>
           </div>
         </div>
