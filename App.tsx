@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Header } from './components/Header';
@@ -25,11 +24,11 @@ const App: React.FC = () => {
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [status, setStatus] = useState<SendingStatus>(SendingStatus.IDLE);
-  
+   
   // UI State
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  
+   
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize sidebar state based on screen width
@@ -94,7 +93,9 @@ const App: React.FC = () => {
         if (hydrated.length > 0) {
           setActiveChatId(hydrated[0].id);
           setMessages(hydrated[0].messages);
-          initializeChat(hydrated[0].messages); // Restore context for latest chat
+          // Restore context for latest chat
+          // We wrap this in a try/catch to prevent app crash if API is down on load
+          initializeChat(hydrated[0].messages).catch(console.warn); 
         } else {
           startNewChat();
         }
@@ -196,6 +197,7 @@ const App: React.FC = () => {
   };
 
   const handleSendMessage = async (text: string, attachment?: Attachment) => {
+    // 1. Prepare User Message
     const isFirstUserMessage = messages.length === 1 && messages[0].id === 'init-1';
 
     const newMessage: Message = {
@@ -210,18 +212,23 @@ const App: React.FC = () => {
     const updatedMessages = [...messages, newMessage];
     setMessages(updatedMessages);
     updateActiveChat(updatedMessages, isFirstUserMessage);
+    
+    // 2. Set Status
     setStatus(SendingStatus.SENDING);
 
     try {
+      // Simulate brief network delay for better UX
       await new Promise(resolve => setTimeout(resolve, 500));
       setStatus(SendingStatus.THINKING);
 
+      // 3. Call Backend Service
       const responseText = await sendMessageToGemini(
         text, 
         attachment?.base64, 
         attachment?.mimeType
       );
 
+      // 4. Handle Success Response
       const botMessage: Message = {
         id: uuidv4(),
         role: 'model',
@@ -237,10 +244,11 @@ const App: React.FC = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       
+      // 5. Handle Error Response
       const errorMessage: Message = {
         id: uuidv4(),
         role: 'model',
-        text: "System is experiencing high traffic or connection issues. Please wait a moment and try again.",
+        text: "I'm having trouble connecting to the server. Please check your internet connection or try again in a moment.",
         timestamp: new Date(),
         isError: true
       };
@@ -328,7 +336,7 @@ const App: React.FC = () => {
                             <Loader2 size={16} className="text-reefer-blue animate-spin" />
                         </div>
                       </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium"> . . . LOADING . . . </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">Analyzing...</span>
                    </div>
                </div>
             )}
@@ -344,4 +352,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
