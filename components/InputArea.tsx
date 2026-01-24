@@ -46,6 +46,8 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
           onSubmit={handleAIInputSubmit}
           placeholder="Ask Reefer Guru..."
           loading={isSending}
+          // 👇 FORCE HIDDEN SCROLLBAR (Targets the textarea inside the component)
+          className="[&_textarea::-webkit-scrollbar]:hidden [&_textarea]:[scrollbar-width:none] [&_textarea]:[-ms-overflow-style:none]"
         />
         
         <div className="text-center mt-2">
