@@ -35,28 +35,22 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    // OUTER CONTAINER: Gradient Mask (Matches MainChatArea example)
-    // 1. Fixed/Sticky positioning logic handled by parent flex layout
-    // 2. Gradient: Solid Gray-950 at bottom -> Transparent at top
-    <div className="w-full flex-shrink-0 z-20 px-2 pb-4 pt-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent dark:from-gray-950 dark:via-gray-950 dark:to-transparent transition-colors duration-300">
-      
-      {/* INNER CAPSULE: Floating Glass Look */}
-      <div className="max-w-3xl mx-auto w-full relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-[26px] shadow-2xl transition-all focus-within:border-reefer-blue/50">
+    // FIXED GRADIENT LOGIC based on your MainChatArea example:
+    // 1. from-gray-950 (Solid bottom)
+    // 2. via-gray-950 (Solid middle - hides scrolling text)
+    // 3. to-transparent (Fades out top - no border line)
+    <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent dark:from-gray-950 dark:via-gray-950 dark:to-transparent transition-colors duration-300">
+      <div className="max-w-3xl mx-auto w-full">
+        <AIInputWithFile 
+          onSubmit={handleAIInputSubmit}
+          placeholder="Ask Reefer Guru..."
+          loading={isSending}
+          className="[&_textarea::-webkit-scrollbar]:hidden [&_textarea]:[scrollbar-width:none] [&_textarea]:[-ms-overflow-style:none]"
+        />
         
-        <div className="px-2">
-            <AIInputWithFile 
-              onSubmit={handleAIInputSubmit}
-              placeholder="Ask Reefer Guru..."
-              loading={isSending}
-              // Remove default styles from the component so our Capsule Wrapper controls the look
-              className="border-none shadow-none bg-transparent focus:ring-0 [&_textarea]:min-h-[24px] [&_textarea::-webkit-scrollbar]:hidden [&_textarea]:[scrollbar-width:none]"
-            />
-        </div>
-
-        {/* Disclaimer Text - Positioned outside or subtly inside */}
-        <div className="absolute -bottom-6 left-0 right-0 text-center">
-             <p className="text-[9px] uppercase tracking-widest text-gray-400 dark:text-gray-600 font-bold">
-               Carrier Transicold AI • Check Manuals
+        <div className="text-center mt-2">
+             <p className="text-[10px] text-gray-400 dark:text-gray-600 font-medium">
+               Carrier Transicold Assistant. Always check official manuals.
              </p>
         </div>
       </div>
