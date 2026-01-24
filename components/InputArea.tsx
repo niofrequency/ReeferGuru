@@ -35,11 +35,11 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    // UPDATED STYLE: Glassmorphism (Blur)
-    // 1. bg-white/80 & dark:bg-gray-950/80 -> Makes it 80% opaque
-    // 2. backdrop-blur-md -> Blurs everything behind it (Glass effect)
-    // 3. border-t border-gray-200/50 -> Adds a very subtle, premium top edge
-    <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800/50 transition-colors duration-300">
+    // UPDATED STYLE: Gradient Fade (No Border)
+    // Matches the "Other Code" example you provided.
+    // 1. from-gray-50/950 -> Matches background color at bottom
+    // 2. to-transparent -> Fades out at the top (no hard line)
+    <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent dark:from-gray-950 dark:via-gray-950 dark:to-transparent transition-colors duration-300">
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
           onSubmit={handleAIInputSubmit}
@@ -49,7 +49,7 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
         />
         
         <div className="text-center mt-2">
-             <p className="text-[10px] text-gray-500 dark:text-gray-500 font-medium">
+             <p className="text-[10px] text-gray-400 dark:text-gray-600 font-medium">
                Carrier Transicold Assistant. Always check official manuals.
              </p>
         </div>
