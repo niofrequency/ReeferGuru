@@ -35,10 +35,10 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    // UPDATED STYLE: Gradient Fade (No Border)
-    // Matches the "Other Code" example you provided.
-    // 1. from-gray-50/950 -> Matches background color at bottom
-    // 2. to-transparent -> Fades out at the top (no hard line)
+    // FIXED GRADIENT LOGIC based on your MainChatArea example:
+    // 1. from-gray-950 (Solid bottom)
+    // 2. via-gray-950 (Solid middle - hides scrolling text)
+    // 3. to-transparent (Fades out top - no border line)
     <div className="w-full flex-shrink-0 z-20 p-2 pb-4 md:pb-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent dark:from-gray-950 dark:via-gray-950 dark:to-transparent transition-colors duration-300">
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
