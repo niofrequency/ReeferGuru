@@ -10,7 +10,7 @@ let xaiClient: OpenAI | null = null;
 const getClient = (): OpenAI => {
   if (!xaiClient) {
     // Supports both Vite (import.meta.env) and Node/Vercel (process.env)
-    const apiKey = import.meta.env.XAI_API_KEY || process.env.XAI_API_KEY;
+    const apiKey = import.meta.env.VITE_XAI_API_KEY || process.env.XAI_API_KEY;
     
     if (!apiKey) {
       console.error("XAI_API_KEY is missing in environment variables.");
