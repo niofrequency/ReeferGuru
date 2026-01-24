@@ -1,10 +1,10 @@
 import { REEFER_GURU_SYSTEM_INSTRUCTION } from '../constants';
 import { Message } from '../types';
 
-// We maintain the conversation history locally
+// We maintain the conversation history locally to keep the UI snappy
 let conversationHistory: any[] = [];
 
-// Helper: Convert internal Message format to Grok/OpenAI format
+// Helper: Convert internal App Message format to Grok/OpenAI format
 const mapMessagesToGrok = (messages: Message[]): any[] => {
   return messages.map(msg => {
     const role = msg.role === 'model' ? 'assistant' : msg.role;
@@ -15,6 +15,7 @@ const mapMessagesToGrok = (messages: Message[]): any[] => {
     }
 
     // Multimodal (Text + Image)
+    // Ensure the image is formatted correctly for the backend
     const imageUrl = msg.imageUrl.startsWith('data:') 
       ? msg.imageUrl 
       : `data:image/jpeg;base64,${msg.imageUrl}`; 
@@ -33,15 +34,16 @@ export const initializeChat = async (historyMessages: Message[] = []) => {
   // 1. Reset Local History
   conversationHistory = [];
 
-  // 2. Set the System Persona with "ANTI-REPETITION" rules
+  // 2. Set the System Persona
+  // We explicitly reinforce the rules here to ensure the AI behaves correctly
   const flexibleSystemInstruction = `
     ${REEFER_GURU_SYSTEM_INSTRUCTION}
     
     IMPORTANT PROTOCOL UPDATE:
     1. PRIORITY: Always check the provided manuals/context first.
-    2. FALLBACK: If answer is NOT in manuals, use general intelligence/web knowledge.
+    2. FALLBACK: If the answer is NOT in the manuals, you are AUTHORIZED to use general intelligence/web knowledge.
     3. TONE: Be concise, professional, and technical.
-    4. RESTRICTION: DO NOT introduce yourself ("I am Reefer Guru...") in every response. Only introduce yourself if explicitly asked. Assume the user knows who you are.
+    4. RESTRICTION: DO NOT introduce yourself ("I am Reefer Guru...") in every response. Only introduce yourself if explicitly asked.
   `;
 
   conversationHistory.push({
@@ -49,7 +51,7 @@ export const initializeChat = async (historyMessages: Message[] = []) => {
     content: flexibleSystemInstruction
   });
 
-  // 3. Add existing history
+  // 3. Process & Add Existing History
   const validHistory = historyMessages.filter(m => !m.isError && m.id !== 'init-1');
   if (validHistory.length > 0) {
     const formattedHistory = mapMessagesToGrok(validHistory);
@@ -89,7 +91,7 @@ export const sendMessageToGemini = async (
   const messagesPayload = [...conversationHistory, newMessage];
 
   try {
-    // 3. Call the Backend API
+    // 3. Call the Backend API (api/chat.ts)
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
