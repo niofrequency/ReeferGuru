@@ -261,7 +261,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full bg-gray-50 dark:bg-gray-950 overflow-hidden transition-colors duration-300">
+    // FIX 1: Use h-[100dvh] for dynamic viewport height (crucial for iOS)
+    <div className="flex h-[100dvh] bg-gray-50 dark:bg-gray-950 overflow-hidden transition-colors duration-300">
       
       {/* Sidebar - Persistent on desktop, drawer on mobile */}
       <Sidebar 
@@ -278,12 +279,13 @@ const App: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col h-full min-w-0 relative">
-        <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
-                status={status} // <--- Add this line 
-          />
+        <Header 
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
+          status={status} // <--- Added Status Prop
+        />
         
-        {/* Chat Area */}
-        <main className="flex-1 overflow-y-auto px-2 md:px-4 pt-4 pb-40 scroll-smooth">
+        {/* Chat Area - REMOVED huge bottom padding */}
+        <main className="flex-1 overflow-y-auto px-2 md:px-4 pt-4 pb-4 scroll-smooth">
           <div className="max-w-4xl mx-auto flex flex-col min-h-full">
             
             {/* Empty State / Suggestions */}
@@ -347,6 +349,7 @@ const App: React.FC = () => {
           </div>
         </main>
 
+        {/* FIX 3: Input Area is now a standard flex item */}
         <InputArea onSendMessage={handleSendMessage} status={status} />
       </div>
     </div>
