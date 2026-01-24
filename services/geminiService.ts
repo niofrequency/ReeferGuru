@@ -1,7 +1,7 @@
 import { REEFER_GURU_SYSTEM_INSTRUCTION } from '../constants';
 import { Message } from '../types';
 
-// We keep the history locally in the browser to maintain context
+// We maintain the conversation history locally
 let conversationHistory: any[] = [];
 
 // Helper: Convert internal Message format to Grok/OpenAI format
@@ -33,14 +33,15 @@ export const initializeChat = async (historyMessages: Message[] = []) => {
   // 1. Reset Local History
   conversationHistory = [];
 
-  // 2. Set the System Persona
+  // 2. Set the System Persona with "ANTI-REPETITION" rules
   const flexibleSystemInstruction = `
     ${REEFER_GURU_SYSTEM_INSTRUCTION}
     
     IMPORTANT PROTOCOL UPDATE:
-    1. IDENTITY: You are "Reefer Guru", an expert in REEFER Containers: Daikin and Carrier.
-    2. PRIORITY: Always check the provided manuals/context first.
-    3. FALLBACK: If answer is NOT in manuals, use general intelligence/web knowledge.
+    1. PRIORITY: Always check the provided manuals/context first.
+    2. FALLBACK: If answer is NOT in manuals, use general intelligence/web knowledge.
+    3. TONE: Be concise, professional, and technical.
+    4. RESTRICTION: DO NOT introduce yourself ("I am Reefer Guru...") in every response. Only introduce yourself if explicitly asked. Assume the user knows who you are.
   `;
 
   conversationHistory.push({
@@ -84,11 +85,11 @@ export const sendMessageToGemini = async (
     newMessage = { role: 'user', content: text };
   }
 
-  // 2. Combine History + New Message to send to Backend
+  // 2. Combine History + New Message
   const messagesPayload = [...conversationHistory, newMessage];
 
   try {
-    // 3. Call the SECURE Backend API (api/chat.ts)
+    // 3. Call the Backend API
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
