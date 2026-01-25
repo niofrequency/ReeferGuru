@@ -35,9 +35,11 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
   };
 
   return (
-    // FIX: Removed "pb-4 md:pb-6"
-    // Only "p-2" remains, which removes the large gap at the bottom.
-    <div className="w-full flex-shrink-0 z-20 p-2 bg-gradient-to-t from-gray-50 via-gray-50/95 to-transparent dark:from-gray-950 dark:via-gray-950/95 dark:to-transparent transition-colors duration-300">
+    // UPDATED: iOS "Frosted Glass" Style
+    // 1. bg-white/70 & dark:bg-gray-950/70 -> Semi-transparent (blends with background)
+    // 2. backdrop-blur-xl -> Blurs the chat behind it so you can read the input
+    // 3. NO border-t -> Removes the line completely
+    <div className="w-full flex-shrink-0 z-20 p-2 bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl transition-colors duration-300">
       <div className="max-w-3xl mx-auto w-full">
         <AIInputWithFile 
           onSubmit={handleAIInputSubmit}
@@ -45,7 +47,6 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, status }) =
           loading={isSending}
           className="[&_textarea::-webkit-scrollbar]:hidden [&_textarea]:[scrollbar-width:none] [&_textarea]:[-ms-overflow-style:none]"
         />
-        
       </div>
     </div>
   );
