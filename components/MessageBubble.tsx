@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Message } from '../types';
-import { Bot, User, AlertTriangle, Copy, Check } from 'lucide-react';
+import { Bot, User, AlertTriangle, Copy, Check, Cpu } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 interface MessageBubbleProps {
@@ -11,6 +11,45 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   const isUser = message.role === 'user';
   const isError = message.isError;
   const [isCopied, setIsCopied] = useState(false);
+
+  // --- TYPEWRITER STATE ---
+  // Only animate if it's a bot message AND it's new (less than 10 seconds old)
+  const [shouldAnimate] = useState(() => {
+    const isRecent = (Date.now() - (message.timestamp.getTime() || 0)) < 10000;
+    return !isUser && !isError && isRecent;
+  });
+
+  const [displayedText, setDisplayedText] = useState(shouldAnimate ? '' : message.text);
+  const [isTypingComplete, setIsTypingComplete] = useState(!shouldAnimate);
+
+  // --- TYPING EFFECT LOGIC ---
+  useEffect(() => {
+    if (!shouldAnimate) {
+      setDisplayedText(message.text);
+      setIsTypingComplete(true);
+      return;
+    }
+
+    if (displayedText === message.text) {
+      setIsTypingComplete(true);
+      return;
+    }
+
+    // Faster typing speed (15ms) for a snappy feel
+    const typingInterval = setInterval(() => {
+      setDisplayedText((prev) => {
+        if (prev.length >= message.text.length) {
+          clearInterval(typingInterval);
+          setIsTypingComplete(true);
+          return message.text;
+        }
+        return message.text.slice(0, prev.length + 2); // Type 2 chars at a time for speed
+      });
+    }, 15);
+
+    return () => clearInterval(typingInterval);
+  }, [message.text, shouldAnimate]);
+
 
   const handleCopy = async () => {
     try {
@@ -23,55 +62,62 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   };
 
   return (
-    <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'} mb-6 group`}>
-      <div className={`flex max-w-[90%] md:max-w-[80%] lg:max-w-[70%] items-end ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+    <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'} mb-8 animate-in fade-in slide-in-from-bottom-2 duration-300`}>
+      <div className={`flex flex-col max-w-[85%] md:max-w-[75%] ${isUser ? 'items-end' : 'items-start'}`}>
         
-        {/* Avatar */}
-        <div className={`flex-shrink-0 h-8 w-8 rounded-full flex items-center justify-center shadow-sm mx-2 mb-1
-          ${isUser ? 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300' : isError ? 'bg-red-100 dark:bg-red-900/30 text-red-500' : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-reefer-blue'}
-        `}>
-          {isUser ? <User size={16} /> : isError ? <AlertTriangle size={16} /> : <Bot size={18} />}
+        {/* HEADER: Identity Designation */}
+        <div className={`flex items-center gap-2 mb-1.5 px-1`}>
+            {!isUser && <Cpu className="w-3 h-3 text-reefer-blue" />}
+            <span className={`text-[10px] uppercase tracking-[0.2em] font-bold ${isUser ? 'text-gray-500' : 'text-reefer-blue'}`}>
+                {isUser ? 'User Protocol' : 'Guru Interface'}
+            </span>
+            {isUser && <User className="w-3 h-3 text-gray-500" />}
         </div>
 
-        {/* Bubble Content */}
+        {/* TEXT CONTENT */}
         <div className={`
-          relative px-5 py-3.5 text-sm md:text-base shadow-sm
+          relative px-5 py-4 text-sm md:text-[15px] leading-relaxed backdrop-blur-md transition-all shadow-lg
           ${isUser 
-            ? 'bg-reefer-blue text-white rounded-2xl rounded-br-sm' 
+            ? 'bg-white/[0.05] text-gray-200 rounded-2xl rounded-tr-none border border-white/10' 
             : isError
-              ? 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-900/30 rounded-2xl rounded-bl-sm'
-              : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-2xl rounded-bl-sm'
+              ? 'bg-red-900/10 text-red-200 rounded-2xl rounded-tl-none border border-red-500/30'
+              : 'bg-reefer-blue/10 text-gray-100 rounded-2xl rounded-tl-none border border-reefer-blue/30 shadow-[0_0_20px_rgba(0,85,164,0.1)]'
           }
         `}>
           
-          {/* Attached Image Preview */}
+          {!isUser && !isError && (
+             <div className="absolute -inset-0.5 bg-reefer-blue/10 rounded-2xl blur-md -z-10"></div>
+          )}
+
+          {/* Image Preview */}
           {message.imageUrl && (
-            <div className="mb-3 rounded-lg overflow-hidden border border-white/20 bg-black/5 max-w-[240px]">
+            <div className="mb-4 mt-1 rounded-xl overflow-hidden border border-white/10 bg-black/20 max-w-[280px]">
               <img 
                 src={message.imageUrl} 
                 alt="Uploaded context" 
-                className="w-full h-auto object-cover max-h-48"
+                className="w-full h-auto object-cover max-h-60"
                 loading="lazy"
               />
             </div>
           )}
 
-          {/* Text Content with Markdown Support */}
+          {/* Content with Markdown & Cursor */}
           <div className={`markdown prose prose-sm max-w-none 
-            ${isUser ? 'prose-invert' : 'prose-slate dark:prose-invert'}
+            ${isUser ? 'prose-invert' : 'prose-invert'} 
             prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0
-            prose-strong:font-bold prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+            prose-strong:text-white prose-strong:font-bold
+            prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
           `}>
              <ReactMarkdown 
                components={{
                  code({node, className, children, ...props}) {
                    const match = /language-(\w+)/.exec(className || '')
                    return !match ? (
-                     <code className={`${isUser ? 'bg-white/20' : 'bg-gray-100 dark:bg-gray-700'} rounded px-1`} {...props}>
+                     <code className="bg-white/10 rounded px-1 text-xs border border-white/5" {...props}>
                        {children}
                      </code>
                    ) : (
-                     <pre className="bg-gray-900 text-gray-100 p-3 rounded-md overflow-x-auto text-xs my-2 border-l-4 border-reefer-green">
+                     <pre className="bg-black/40 backdrop-blur-sm text-gray-100 p-3 rounded-lg overflow-x-auto text-xs my-2 border border-white/10">
                        <code className={className} {...props}>
                          {children}
                        </code>
@@ -80,34 +126,44 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
                  },
                  blockquote({children}) {
                     return (
-                        <blockquote className="not-italic border-l-4 border-reefer-green bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-100 p-2 my-2 rounded-r text-xs md:text-sm font-medium">
+                        <blockquote className="not-italic border-l-4 border-reefer-green bg-green-900/10 text-green-100 p-2 my-2 rounded-r text-xs md:text-sm font-medium">
                             {children}
                         </blockquote>
+                    )
+                 },
+                 a({node, children, ...props}) {
+                    return (
+                        <a className="text-blue-300 hover:text-blue-200 underline decoration-blue-300/50 hover:decoration-blue-200" {...props}>
+                            {children}
+                        </a>
                     )
                  }
                }}
              >
-              {message.text}
+              {/* USE DISPLAYED TEXT HERE */}
+              {displayedText}
              </ReactMarkdown>
+
+             {/* BLINKING CURSOR */}
+             {!isTypingComplete && !isUser && (
+                <span className="inline-block w-1.5 h-4 ml-1 bg-reefer-blue align-middle animate-pulse" />
+             )}
           </div>
           
-          {/* Footer: Copy Button & Timestamp */}
-          <div className="flex items-center justify-between mt-2 min-h-[20px]">
+          {/* Footer */}
+          <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/5">
             {!isUser && !isError ? (
                 <button
                     onClick={handleCopy}
-                    className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
-                    title="Copy to clipboard"
-                    aria-label="Copy to clipboard"
+                    className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-gray-500 hover:text-white transition-colors"
                 >
-                    {isCopied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
+                    {isCopied ? <Check size={12} className="text-reefer-green" /> : <Copy size={12} />}
+                    <span className="font-bold">{isCopied ? 'Copied' : 'Copy'}</span>
                 </button>
-            ) : (
-                <div /> /* Spacer */
-            )}
+            ) : <div />}
             
-            <div className={`text-[10px] opacity-70 ${isUser ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
-              {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            <div className="text-[9px] text-gray-600 font-mono tracking-tighter uppercase">
+              [{new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}]
             </div>
           </div>
         </div>
