@@ -6,7 +6,7 @@ import { InputArea } from './components/InputArea';
 import { Sidebar } from './components/Sidebar';
 import { Message, Attachment, SendingStatus, StoredChat } from './types';
 import { sendMessageToGemini, initializeChat } from './services/geminiService';
-import { AlertCircle, Wrench, BookOpen, Loader2 } from 'lucide-react';
+import { AlertCircle, Wrench, BookOpen, Bot } from 'lucide-react';
 
 const STORAGE_KEY = 'reefer_guru_chats_v1';
 const THEME_KEY = 'reefer_guru_theme';
@@ -281,7 +281,7 @@ const App: React.FC = () => {
       <div className="flex-1 flex flex-col h-full min-w-0 relative">
         <Header 
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
-          status={status} 
+          status={status} // <--- Added Status Prop
         />
         
         {/* Chat Area */}
@@ -332,16 +332,21 @@ const App: React.FC = () => {
               <MessageBubble key={msg.id} message={msg} />
             ))}
 
-            {/* Loading Indicator */}
+            {/* UPDATED: TYPING INDICATOR (3 BOUNCING DOTS) */}
             {(status === SendingStatus.THINKING || status === SendingStatus.SENDING) && (
                <div className="flex justify-start mb-6 animate-in fade-in duration-300">
-                   <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl px-4 py-3 shadow-sm flex items-center space-x-3">
-                      <div className="relative">
-                        <div className="w-8 h-8 bg-reefer-blue/10 dark:bg-reefer-blue/20 rounded-full flex items-center justify-center">
-                            <Loader2 size={16} className="text-reefer-blue animate-spin" />
-                        </div>
-                      </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">Analyzing...</span>
+                   <div className="flex max-w-[90%] md:max-w-[85%] lg:max-w-[75%] items-end">
+                       {/* Bot Avatar */}
+                       <div className="flex-shrink-0 h-8 w-8 rounded-full flex items-center justify-center shadow-sm mx-2 mb-1 backdrop-blur-md border bg-reefer-blue/10 border-reefer-blue/20 text-reefer-blue dark:text-blue-400">
+                          <Bot size={18} />
+                       </div>
+                       
+                       {/* Bouncing Dots Bubble */}
+                       <div className="bg-black/10 dark:bg-white/5 border border-white/5 rounded-2xl rounded-tl-none px-4 py-3.5 flex items-center space-x-1.5 backdrop-blur-md">
+                          <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                          <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                          <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce"></div>
+                       </div>
                    </div>
                </div>
             )}
