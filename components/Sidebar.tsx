@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MessageSquare, Plus, Trash2, X, Clock, PanelLeftClose, Moon, Sun } from 'lucide-react';
 import { StoredChat } from '../types';
@@ -39,7 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Sidebar Container */}
       <div className={`
         fixed md:static inset-y-0 left-0 z-40
-        bg-gray-100 dark:bg-reefer-dark text-gray-600 dark:text-gray-300 flex flex-col
+        bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300 flex flex-col
         transform transition-all duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
         md:translate-x-0 
@@ -151,7 +150,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       <div className={`
                          absolute top-1 w-3 h-3 bg-white rounded-full transition-all duration-200
                          ${isDarkMode ? 'left-5' : 'left-1'}
-                      `} />
+                       `} />
                    </div>
                 </button>
 
