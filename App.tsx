@@ -281,11 +281,12 @@ const App: React.FC = () => {
       <div className="flex-1 flex flex-col h-full min-w-0 relative">
         <Header 
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
-          status={status} // <--- Added Status Prop
+          status={status} 
         />
         
-        {/* Chat Area - REMOVED huge bottom padding */}
-        <main className="flex-1 overflow-y-auto px-2 md:px-4 pt-4 pb-4 scroll-smooth">
+        {/* Chat Area */}
+        {/* FIX 2: Added 'pb-36' or 'pb-40'. This ensures the text scrolls BEHIND the input area */}
+        <main className="flex-1 overflow-y-auto px-2 md:px-4 pt-4 pb-36 scroll-smooth">
           <div className="max-w-4xl mx-auto flex flex-col min-h-full">
             
             {/* Empty State / Suggestions */}
@@ -349,8 +350,11 @@ const App: React.FC = () => {
           </div>
         </main>
 
-        {/* FIX 3: Input Area is now a standard flex item */}
-        <InputArea onSendMessage={handleSendMessage} status={status} />
+        {/* FIX 3: Input Area is now ABSOLUTE POSITIONED (Overlay) */}
+        {/* This removes the "border/seam" because it floats on top of the content */}
+        <div className="absolute bottom-0 left-0 w-full z-20">
+            <InputArea onSendMessage={handleSendMessage} status={status} />
+        </div>
       </div>
     </div>
   );
