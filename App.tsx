@@ -6,7 +6,7 @@ import { InputArea } from './components/InputArea';
 import { Sidebar } from './components/Sidebar';
 import { Message, Attachment, SendingStatus, StoredChat } from './types';
 import { sendMessageToGemini, initializeChat } from './services/geminiService';
-import { AlertCircle, Wrench, BookOpen, Bot } from 'lucide-react';
+import { AlertCircle, Wrench, BookOpen, Bot, Loader2 } from 'lucide-react';
 
 const STORAGE_KEY = 'reefer_guru_chats_v1';
 const THEME_KEY = 'reefer_guru_theme';
@@ -18,18 +18,47 @@ const INITIAL_MESSAGE: Message = {
   timestamp: new Date()
 };
 
+// Realistic "Thinking" steps for the AI to cycle through
+const THINKING_STEPS = [
+  "Accessing Carrier Knowledge Base...",
+  "Scanning T-363 Service Manual...",
+  "Analyzing Alarm Logic...",
+  "Verifying Sensor Calibration...",
+  "Checking Wiring Diagrams...",
+  "Formulating Diagnosis..."
+];
+
 const App: React.FC = () => {
   // State
   const [chats, setChats] = useState<StoredChat[]>([]);
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [status, setStatus] = useState<SendingStatus>(SendingStatus.IDLE);
+  
+  // Thinking Animation State
+  const [thinkingText, setThinkingText] = useState(THINKING_STEPS[0]);
    
   // UI State
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
    
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // --- THINKING CYCLE EFFECT ---
+  // Cycles through the THINKING_STEPS when the bot is processing
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (status === SendingStatus.THINKING || status === SendingStatus.SENDING) {
+      let index = 0;
+      setThinkingText(THINKING_STEPS[0]); // Reset to start
+      
+      interval = setInterval(() => {
+        index = (index + 1) % THINKING_STEPS.length;
+        setThinkingText(THINKING_STEPS[index]);
+      }, 1800); // Change step every 1.8 seconds
+    }
+    return () => clearInterval(interval);
+  }, [status]);
 
   // Initialize sidebar state based on screen width
   useEffect(() => {
@@ -285,7 +314,7 @@ const App: React.FC = () => {
         />
         
         {/* Chat Area */}
-        {/* FIX 2: Added 'pb-36' or 'pb-40'. This ensures the text scrolls BEHIND the input area */}
+        {/* FIX 2: Added 'pb-36'. This ensures the text scrolls BEHIND the input area overlay */}
         <main className="flex-1 overflow-y-auto px-2 md:px-4 pt-4 pb-36 scroll-smooth">
           <div className="max-w-4xl mx-auto flex flex-col min-h-full">
             
@@ -332,7 +361,7 @@ const App: React.FC = () => {
               <MessageBubble key={msg.id} message={msg} />
             ))}
 
-            {/* UPDATED: TYPING INDICATOR (3 BOUNCING DOTS) */}
+            {/* DYNAMIC THINKING INDICATOR */}
             {(status === SendingStatus.THINKING || status === SendingStatus.SENDING) && (
                <div className="flex justify-start mb-6 animate-in fade-in duration-300">
                    <div className="flex max-w-[90%] md:max-w-[85%] lg:max-w-[75%] items-end">
@@ -341,11 +370,19 @@ const App: React.FC = () => {
                           <Bot size={18} />
                        </div>
                        
-                       {/* Bouncing Dots Bubble */}
-                       <div className="bg-black/10 dark:bg-white/5 border border-white/5 rounded-2xl rounded-tl-none px-4 py-3.5 flex items-center space-x-1.5 backdrop-blur-md">
-                          <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                          <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                          <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce"></div>
+                       {/* Bouncing Dots + Text Bubble */}
+                       <div className="bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 rounded-2xl rounded-tl-none px-4 py-3.5 flex items-center gap-3 backdrop-blur-md shadow-sm">
+                          {/* Dots Animation */}
+                          <div className="flex space-x-1">
+                            <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                            <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                            <div className="w-1.5 h-1.5 bg-reefer-blue/60 dark:bg-blue-400/60 rounded-full animate-bounce"></div>
+                          </div>
+                          
+                          {/* Dynamic Thinking Text */}
+                          <span className="text-xs font-medium text-gray-500 dark:text-gray-400 animate-pulse min-w-[160px] whitespace-nowrap overflow-hidden text-ellipsis">
+                            {thinkingText}
+                          </span>
                        </div>
                    </div>
                </div>
@@ -356,7 +393,6 @@ const App: React.FC = () => {
         </main>
 
         {/* FIX 3: Input Area is now ABSOLUTE POSITIONED (Overlay) */}
-        {/* This removes the "border/seam" because it floats on top of the content */}
         <div className="absolute bottom-0 left-0 w-full z-20">
             <InputArea onSendMessage={handleSendMessage} status={status} />
         </div>
