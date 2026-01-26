@@ -13,10 +13,15 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   // --- TYPEWRITER STATE ---
-  // Only animate if it's a bot message AND it's new (less than 10 seconds old)
+  // Logic: 
+  // 1. Is it a bot message?
+  // 2. Is it brand new? (Less than 10 seconds old)
+  // If YES: Start typing.
+  // If NO (Old history, or user navigated away): Show full text immediately.
   const [shouldAnimate] = useState(() => {
-    const isRecent = (Date.now() - (message.timestamp.getTime() || 0)) < 10000;
-    return !isUser && !isError && isRecent;
+    if (isUser || isError) return false;
+    const messageAge = Date.now() - new Date(message.timestamp).getTime();
+    return messageAge < 10000; // Only type if created in last 10 seconds
   });
 
   const [displayedText, setDisplayedText] = useState(shouldAnimate ? '' : message.text);
@@ -24,18 +29,36 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
 
   // --- TYPING EFFECT LOGIC ---
   useEffect(() => {
+    // If animation is disabled (old message), ensure text is fully visible immediately
     if (!shouldAnimate) {
-      setDisplayedText(message.text);
-      setIsTypingComplete(true);
+      if (displayedText !== message.text) {
+        setDisplayedText(message.text);
+        setIsTypingComplete(true);
+      }
       return;
     }
 
+    // If text is already complete, stop
     if (displayedText === message.text) {
       setIsTypingComplete(true);
       return;
     }
 
-    // Typing speed (15ms)
+    setIsTypingComplete(false);
+
+    // Adaptive Speed: 
+    // - Short text: 20ms/char (Natural)
+    // - Long text: 5ms/char (Fast)
+    const textLength = message.text.length;
+    let typingSpeed = 20; 
+    let charIncrement = 1;
+
+    if (textLength > 150) typingSpeed = 10;
+    if (textLength > 500) {
+        typingSpeed = 5;
+        charIncrement = 3; // Chunk characters for very long responses
+    }
+
     const typingInterval = setInterval(() => {
       setDisplayedText((prev) => {
         if (prev.length >= message.text.length) {
@@ -43,9 +66,9 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
           setIsTypingComplete(true);
           return message.text;
         }
-        return message.text.slice(0, prev.length + 2); 
+        return message.text.slice(0, prev.length + charIncrement);
       });
-    }, 15);
+    }, typingSpeed);
 
     return () => clearInterval(typingInterval);
   }, [message.text, shouldAnimate]);
@@ -74,16 +97,16 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             {isUser && <User className="w-3 h-3 text-gray-500 dark:text-gray-400" />}
         </div>
 
-        {/* TEXT CONTENT - UPDATED COLORS */}
+        {/* TEXT CONTENT - UPDATED VISUALS */}
         <div className={`
           relative px-5 py-4 text-sm md:text-[15px] leading-relaxed backdrop-blur-md transition-all shadow-sm border
           ${isUser 
-            // USER: Solid Blue in Light Mode | Glass in Dark Mode
+            // USER: Solid Blue (Light) | Glass (Dark)
             ? 'bg-reefer-blue text-white border-transparent dark:bg-white/10 dark:text-white dark:border-white/10 rounded-2xl rounded-tr-none' 
             : isError
-              // ERROR: Light Red in Light Mode | Red Glass in Dark Mode
+              // ERROR: Light Red (Light) | Red Glass (Dark)
               ? 'bg-red-50 text-red-800 border-red-100 dark:bg-red-900/20 dark:text-red-200 dark:border-red-500/30 rounded-2xl rounded-tl-none'
-              // BOT: White Card in Light Mode | Dark Glass in Dark Mode
+              // BOT: White Card (Light) | Dark Glass (Dark)
               : 'bg-white text-gray-800 border-gray-100 dark:bg-white/5 dark:text-gray-100 dark:border-white/10 rounded-2xl rounded-tl-none shadow-md dark:shadow-none'
           }
         `}>
@@ -148,9 +171,9 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
               {displayedText}
              </ReactMarkdown>
 
-             {/* BLINKING CURSOR */}
+             {/* BLINKING CURSOR - Only shows while typing */}
              {!isTypingComplete && !isUser && (
-                <span className="inline-block w-1.5 h-4 ml-1 bg-reefer-blue dark:bg-blue-400 align-middle animate-pulse" />
+                <span className="inline-block w-1.5 h-4 ml-1 align-middle animate-pulse bg-reefer-blue dark:bg-blue-400 opacity-75" />
              )}
           </div>
           
