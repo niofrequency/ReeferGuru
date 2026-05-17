@@ -20,13 +20,22 @@ const INITIAL_MESSAGE: Message = {
 
 // Realistic "Thinking" steps for the AI to cycle through
 const THINKING_STEPS = [
-  "Accessing Carrier Knowledge Base...",
-  "Scanning T-363 Service Manual...",
-  "Analyzing Alarm Logic...",
-  "Verifying Sensor Calibration...",
-  "Checking Wiring Diagrams...",
-  "Formulating Diagnosis..."
+  "Analyzing your query in detail...",
+  "Retrieving the most relevant sections from the knowledge base...",
+  "Cross-referencing multiple manuals and technical data...",
+  "Identifying the exact model, controller, and subsystem...",
+  "Applying safety protocols and best practices first...",
+  "Evaluating possible root causes and failure modes...",
+  "Reviewing wiring diagrams, component specifications, and procedures...",
+  "Formulating a clear, step-by-step diagnosis...",
+  "Verifying the recommended actions against official sources...",
+  "Preparing a concise, practical technician response...",
+  "Double-checking accuracy before replying..."
 ];
+
+
+
+
 
 const App: React.FC = () => {
   // State
