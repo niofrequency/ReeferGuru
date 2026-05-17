@@ -5,6 +5,7 @@ import { CARRIER_T320_CONTEXT, CARRIER_T292_CONTEXT, CARRIER_T309_CONTEXT, CARRI
 import { CARRIER_NATURALINE_INSPECTION_CONTEXT } from './data/naturaline';
 import { CARRIER_DATALINE_CONTEXT, CARRIER_LYNX_FLEET_CONTEXT } from './data/software';
 import { DAIKIN_LX10F_CONTEXT } from './data/daikin';
+import { M750_SEALING_MACHINE_CONTEXT } from './data/m750-sealing-machine';
 
 export const REEFER_GURU_SYSTEM_INSTRUCTION = `
 You are "Reefer Guru", the world’s best container technician assistant.
