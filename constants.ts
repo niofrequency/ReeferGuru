@@ -68,6 +68,8 @@ ${CARRIER_LYNX_FLEET_CONTEXT}
 
 ${DAIKIN_LX10F_CONTEXT}
 
+${M750_SEALING_MACHINE_CONTEXT}
+
 **CORE RULES:**
 1. **Identify the Unit**: 
    - If the user provides a specific model number (e.g., "571-311" or "ML5"), use the Carrier context.
