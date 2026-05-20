@@ -10,7 +10,7 @@ export default defineConfig({
       manifest: {
         name: 'Reefer Guru',
         short_name: 'ReeferGuru',
-        description: 'The ultimate AI assistant for refrigerated container technicians',
+        description: 'The ultimate AI assistant for refrigerated container technicians. Expert knowledge on Carrier Transicold units.',
         theme_color: '#0055A4',
         background_color: '#1a202c',
         display: 'standalone',
